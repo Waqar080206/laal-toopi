@@ -1,0 +1,72 @@
+/* ============================================================
+   TRUVY · Design Tokens
+   Single source of truth for colour, type, space, motion.
+   ============================================================ */
+
+:root {
+  /* ---- Surface / ink -------------------------------------- */
+  --obsidian:    #090A0C;
+  --charcoal:    #111318;
+  --charcoal-2:  #181B21;
+  --charcoal-3:  #1F232A;
+  --white:       #F5F4F0;
+  --white-dim:   #D7D8DB;
+  --muted:       #A3A7B0;
+  --muted-2:     #6E727C;
+  --border:      #2A2D34;
+  --border-soft: #1C1F25;
+  --border-hi:   #3A3E46;
+
+  /* ---- Accent --------------------------------------------- */
+  --crimson:      #E5484D;
+  --crimson-dark: #A92E36;
+  --crimson-soft: rgba(229, 72, 77, 0.12);
+  --green:        #65B891;
+  --green-soft:   rgba(101, 184, 145, 0.12);
+  --amber:        #E7B35A;
+  --amber-soft:   rgba(231, 179, 90, 0.12);
+
+  /* ---- Type ----------------------------------------------- */
+  --font-display: 'Manrope', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Cascadia Mono', 'Consolas', ui-monospace, monospace;
+
+  /* ---- Space scale (4px base) ----------------------------- */
+  --s1:  4px;
+  --s2:  8px;
+  --s3:  12px;
+  --s4:  16px;
+  --s5:  20px;
+  --s6:  24px;
+  --s7:  32px;
+  --s8:  40px;
+  --s9:  48px;
+  --s10: 64px;
+  --s11: 80px;
+  --s12: 96px;
+
+  /* ---- Geometry ------------------------------------------- */
+  --slide-w: 1600px;
+  --slide-h: 900px;
+  --pad-x: 104px;
+  --pad-y: 76px;
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+
+  /* ---- Motion --------------------------------------------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+
+  /* ---- Elevation ------------------------------------------ */
+  --shadow-toolbar: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-pop: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+  }
+}

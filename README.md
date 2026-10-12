@@ -1,6 +1,6 @@
-# Sakshi: Stop the Deepfake Before the Money Moves
+# TRUVY: Know what's real
 
-*RAKSHAM Round 1 · Track 03: Deepfake Detection for Financial Communications · Team RED HAT (Waqar Akhtar, Ojus Mathur, Ujjwal Sharma) · Product working title: Sakshi (“the witness”)*
+*RAKSHAM Round 1 · Track 03: Deepfake Detection for Financial Communications · Team RED HAT (Waqar Akhtar, Ojus Mathur, Ujjwal Sharma) · Product working title: TRUVY*
 
 **How to use this document.** It holds everything a reader needs to understand the project and everything the Round 1 brief demands, in the order a reviewer will ask for it. It opens with the pitch, then covers the problem, the product, the proof, the safeguards and the build plan, and ends with a map from every rubric criterion to a slide. Bracketed items \[like this\] are facts the team must supply. We never invent statistics.
 
@@ -8,13 +8,13 @@
 
 Every day, people at Indian banks, lenders and companies release money because a voice note or video looked and sounded real. AI can now fake both. Detection tools exist, but the ones we reviewed stop at a score, and research shows detectors lose accuracy on Indian languages.
 
-Sakshi is the missing piece: a gate in front of payment release. It combines the audio check with language, pressure cues and payment context, and it forces a callback through a trusted channel whenever the risk is real. It helps when the detector is right, and it still protects the institution when the detector is wrong.
+TRUVY is the missing piece: a gate in front of payment release. It combines the audio check with language, pressure cues and payment context, and it forces a callback through a trusted channel whenever the risk is real. It helps when the detector is right, and it still protects the institution when the detector is wrong.
 
 Our finale demo shows it end to end: a suspicious voice note and video, a held payment, a callback, and a report pack for the fraud team.
 
 ## The One-Sentence Solution
 
-Sakshi is a verification gate in front of payment release: it weighs audio and video forensic, provenance, language, pressure-language and payment-context signals, never acts on one weak signal, and routes every doubtful instruction through an out-of-band callback and a human reviewer, leaving an evidence record for the fraud team.
+TRUVY is a verification gate in front of payment release: it weighs audio and video forensic, provenance, language, pressure-language and payment-context signals, never acts on one weak signal, and routes every doubtful instruction through an out-of-band callback and a human reviewer, leaving an evidence record for the fraud team.
 
 ## Who Is Involved
 
@@ -38,10 +38,10 @@ Sakshi is a verification gate in front of payment release: it weighs audio and v
 
 ## 2. Before and After
 
-| Step | Today | With Sakshi |
+| Step | Today | With TRUVY |
 | --- | --- | --- |
-| 1 | Approver hears a familiar voice | Approver flags the instruction in Sakshi, or the approval workflow sends it automatically |
-| 2 | Voice feels genuine, so trust is assumed | Sakshi returns a verdict with reasons in seconds \[to be measured\] |
+| 1 | Approver hears a familiar voice | Approver flags the instruction in TRUVY, or the approval workflow sends it automatically |
+| 2 | Voice feels genuine, so trust is assumed | TRUVY returns a verdict with reasons in seconds \[to be measured\] |
 | 3 | Urgency discourages a callback | Elevated risk requires a callback to the number in the institution’s own directory |
 | 4 | Funds are released | High risk is held and routed to a human reviewer |
 | 5 | Fraud found later, if at all | Every case leaves an evidence record and a one-click report pack |
@@ -49,7 +49,7 @@ Sakshi is a verification gate in front of payment release: it weighs audio and v
 **Differentiation, in four points.**
 
 1. **Decision, not detection.** The detector is one signal among several. The product is the decision and the verification path.
-2. **Honest about language.** For languages where detectors are known to be weaker, Sakshi says so and never issues a “verified real” label.
+2. **Honest about language.** For languages where detectors are known to be weaker, TRUVY says so and never issues a “verified real” label.
 3. **Verification that does not depend on the detector.** An out-of-band callback works even when the detector is wrong, which covers cases pure detection cannot, such as a live human social engineer. Industry write-ups on contact-centre deepfake defence describe risk-based routing and admit this same limit of detection.
 4. **A response path.** The material we reviewed from detection vendors centres on scoring. Review, escalation and reporting are where this project adds value.
 
@@ -186,7 +186,7 @@ The finale is on 24 and 25 October 2026 at IIT Delhi. We confirm compute, intern
 | Adoption, integration, scale (10) | Section 7 | 8 |
 | Communication quality (5) | One narrative, labelled diagram | All |
 
-**Slide blueprint.** 1 Team, track, one-sentence solution. 2 The problem (Section 1). 3 Before and after (Section 2). 4 Product flow (Sections 2 and 3). 5 Decision logic (Section 3). 6 Evidence and validation (Section 4). 7 Safeguards (Section 5). 8 Deployment (Section 7). 9 The 48-hour plan (Section 8). 10 Impact, why Sakshi wins, and extensions. Architecture 1: the system diagram. Architecture 2: data flow, decision logic, escalation. Architecture 3: security, privacy, adversarial risk, performance. Appendix: disclosures and references.
+**Slide blueprint.** 1 Team, track, one-sentence solution. 2 The problem (Section 1). 3 Before and after (Section 2). 4 Product flow (Sections 2 and 3). 5 Decision logic (Section 3). 6 Evidence and validation (Section 4). 7 Safeguards (Section 5). 8 Deployment (Section 7). 9 The 48-hour plan (Section 8). 10 Impact, why TRUVY wins, and extensions. Architecture 1: the system diagram. Architecture 2: data flow, decision logic, escalation. Architecture 3: security, privacy, adversarial risk, performance. Appendix: disclosures and references.
 
 ## 10. Tough Questions, Straight Answers
 
@@ -204,7 +204,7 @@ The finale is on 24 and 25 October 2026 at IIT Delhi. We confirm compute, intern
 
 **Is this safe for privacy?** Ephemeral audio, no voiceprints, no customer data, hashes and scores only, role-based access.
 
-## Why Sakshi Wins
+## Why TRUVY Wins
 
 Four reasons to back this team:
 

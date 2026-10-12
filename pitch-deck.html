@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TRUVY · Know what's real</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+
+<style>
+  :root{
+    --bg:#060913;
+    --bg2:#0b1226;
+    --ink:#eaf0ff;
+    --muted:#9fb0d2;
+    --cyan:#22d3ee;
+    --amber:#fbbf24;
+    --green:#34d399;
+    --red:#fb7185;
+    --violet:#a78bfa;
+    --card:rgba(255,255,255,.045);
+    --card2:rgba(255,255,255,.07);
+    --stroke:rgba(255,255,255,.12);
+    --stroke2:rgba(255,255,255,.2);
+    --radius:18px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{ height:100%; }
+  body{ margin:0; background:var(--bg); }
+
+  .reveal-viewport{ background:radial-gradient(1200px 700px at 15% -10%, #16224a 0%, transparent 55%),
+                              radial-gradient(1100px 700px at 100% 0%, #10333d 0%, transparent 50%),
+                              linear-gradient(180deg,#060913 0%,#080d1c 60%,#060913 100%); }
+
+  .reveal{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+    color:var(--ink);
+    font-size:18px;
+  }
+  .reveal .slides{ text-align:left; }
+  .reveal .slides section{ height:100%; padding:0; }
+
+  .reveal h1,.reveal h2,.reveal h3,.reveal h4{
+    font-family:'Sora',sans-serif; color:var(--ink);
+    text-transform:none; letter-spacing:-.02em; margin:0; line-height:1.08;
+  }
+  .reveal a{ color:var(--cyan); }
+
+  /* ---------- decorative aurora ---------- */
+  .aurora{ position:fixed; inset:0; overflow:hidden; z-index:0; pointer-events:none; }
+  .aurora span{
+    position:absolute; border-radius:50%; filter:blur(70px); opacity:.28;
+    animation:drift 22s ease-in-out infinite;
+  }
+  .aurora span:nth-child(1){ width:520px;height:520px;left:-140px;top:-120px;background:#2563eb; }
+  .aurora span:nth-child(2){ width:460px;height:460px;right:-120px;top:8%;background:#0891b2; animation-delay:-6s; }
+  .aurora span:nth-child(3){ width:420px;height:420px;left:35%;bottom:-160px;background:#7c3aed; animation-delay:-12s; }
+  @keyframes drift{ 0%,100%{ transform:translate3d(0,0,0) scale(1);} 50%{ transform:translate3d(40px,-30px,0) scale(1.08);} }
+
+  /* ---------- layout helpers ---------- */
+  .pad{ position:relative; z-index:2; height:100%; padding:46px 60px 40px; display:flex; flex-direction:column; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:9px;
+    font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--cyan); font-weight:600;
+  }
+  .eyebrow .dot{ width:7px;height:7px;border-radius:50%; background:var(--cyan); box-shadow:0 0 12px var(--cyan); }
+  .slide-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin-bottom:22px; }
+  .slide-head h2{ font-size:34px; font-weight:700; margin-top:8px; }
+  .slide-head h2 .accent{ background:linear-gradient(90deg,var(--cyan),var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .slide-head .idx{
+    font-family:'Sora'; font-weight:800; font-size:44px; line-height:1;
+    color:transparent; -webkit-text-stroke:1.4px rgba(255,255,255,.22);
+  }
+  .sub{ color:var(--muted); font-size:16px; margin-top:6px; }
+
+  /* ---------- cards ---------- */
+  .glass{
+    background:var(--card);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    backdrop-filter:blur(8px);
+  }
+  .glass.tint{ background:var(--card2); }
+  .card-title{ font-family:'Sora'; font-weight:600; font-size:15px; display:flex; align-items:center; gap:9px; margin-bottom:10px; }
+  .card-title svg{ width:18px;height:18px; color:var(--cyan); flex:none; }
+
+  .grid{ display:grid; gap:16px; }
+  .g2{ grid-template-columns:1fr 1fr; }
+  .g3{ grid-template-columns:repeat(3,1fr); }
+  .g4{ grid-template-columns:repeat(4,1fr); }
+  .g-2-1{ grid-template-columns:1.6fr 1fr; }
+  .grow{ flex:1; }
+
+  ul.clean{ list-style:none; margin:0; padding:0; }
+  ul.clean li{ position:relative; padding-left:20px; margin:8px 0; color:#d7e0f5; font-size:15px; line-height:1.4; }
+  ul.clean li::before{ content:""; position:absolute; left:2px; top:8px; width:7px;height:7px;border-radius:2px; background:linear-gradient(135deg,var(--cyan),var(--violet)); }
+  ul.clean.sm li{ font-size:13.6px; margin:6px 0; }
+
+  .chip{
+    display:inline-flex; align-items:center; gap:7px;
+    padding:6px 13px; border-radius:999px; font-size:13px; font-weight:500;
+    background:rgba(255,255,255,.06); border:1px solid var(--stroke);
+    color:#dbe4f8;
+  }
+  .chip svg{ width:14px;height:14px; }
+  .chip.cyan{ color:#a5f3fc; border-color:rgba(34,211,238,.35); background:rgba(34,211,238,.08); }
+  .chip.amber{ color:#fde68a; border-color:rgba(251,191,36,.35); background:rgba(251,191,36,.08); }
+  .chip.red{ color:#fecdd3; border-color:rgba(251,113,133,.35); background:rgba(251,113,133,.09); }
+  .chip.green{ color:#a7f3d0; border-color:rgba(52,211,153,.35); background:rgba(52,211,153,.08); }
+  .chip.violet{ color:#ddd6fe; border-color:rgba(167,139,250,.4); background:rgba(167,139,250,.1); }
+
+  .tag{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+
+  .kbd{ font-family:'Sora'; font-weight:700; }
+  .mono{ font-variant-numeric:tabular-nums; }
+
+  /* ---------- tables ---------- */
+  table.tbl{ width:100%; border-collapse:separate; border-spacing:0 7px; font-size:14.5px; }
+  table.tbl th{
+    text-align:left; font-family:'Sora'; font-weight:600; font-size:11.5px; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--muted); padding:0 14px 4px;
+  }
+  table.tbl td{
+    background:var(--card); border-top:1px solid var(--stroke); border-bottom:1px solid var(--stroke);
+    padding:11px 14px; vertical-align:top; line-height:1.35;
+  }
+  table.tbl tr td:first-child{ border-left:1px solid var(--stroke); border-radius:12px 0 0 12px; }
+  table.tbl tr td:last-child{ border-right:1px solid var(--stroke); border-radius:0 12px 12px 0; }
+  table.tbl td.lead{ font-weight:600; color:#fff; }
+
+  /* ---------- risk bands ---------- */
+  .band{ border-radius:14px; padding:13px 15px; border:1px solid var(--stroke); position:relative; overflow:hidden; }
+  .band .b-head{ display:flex; align-items:center; gap:9px; font-family:'Sora'; font-weight:700; font-size:15px; }
+  .band .b-head .swatch{ width:12px;height:12px;border-radius:4px; }
+  .band .b-body{ font-size:13.3px; color:#cdd7ee; margin-top:6px; line-height:1.35; }
+  .band.low{ background:linear-gradient(180deg,rgba(52,211,153,.14),rgba(52,211,153,.03)); }
+  .band.low .swatch{ background:var(--green); box-shadow:0 0 10px var(--green); }
+  .band.elevated{ background:linear-gradient(180deg,rgba(251,191,36,.15),rgba(251,191,36,.03)); }
+  .band.elevated .swatch{ background:var(--amber); box-shadow:0 0 10px var(--amber); }
+  .band.high{ background:linear-gradient(180deg,rgba(251,113,133,.16),rgba(251,113,133,.03)); }
+  .band.high .swatch{ background:var(--red); box-shadow:0 0 10px var(--red); }
+
+  /* ---------- rules ---------- */
+  ol.rules{ list-style:none; counter-reset:r; margin:0; padding:0; }
+  ol.rules li{
+    counter-increment:r; position:relative; padding:8px 0 8px 40px; font-size:13.4px; color:#d7e0f5; line-height:1.35;
+    border-bottom:1px dashed rgba(255,255,255,.09);
+  }
+  ol.rules li:last-child{ border-bottom:0; }
+  ol.rules li::before{
+    content:counter(r); position:absolute; left:0; top:6px;
+    width:26px;height:26px; border-radius:9px; display:grid; place-items:center;
+    font-family:'Sora'; font-weight:700; font-size:12.5px;
+    background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(167,139,250,.2));
+    border:1px solid var(--stroke2); color:#eaf0ff;
+  }
+
+  /* ---------- flow ---------- */
+  .flow{ display:flex; align-items:stretch; gap:8px; }
+  .flow .step{
+    flex:1; background:var(--card); border:1px solid var(--stroke); border-radius:13px;
+    padding:11px 12px; text-align:center; position:relative;
+  }
+  .flow .step .n{ font-family:'Sora'; font-weight:700; font-size:11px; color:var(--cyan); }
+  .flow .step .t{ font-size:12.6px; font-weight:600; margin-top:4px; line-height:1.25; }
+  .flow .arrow{ align-self:center; color:rgba(255,255,255,.3); font-size:16px; }
+
+  /* before / after */
+  .ba-row{ display:grid; grid-template-columns:34px 1fr 1fr; gap:10px; align-items:stretch; margin-bottom:8px; }
+  .ba-row .num{ display:grid; place-items:center; font-family:'Sora'; font-weight:700; font-size:13px; color:var(--muted); }
+  .ba-cell{ border-radius:11px; padding:9px 13px; font-size:13.4px; line-height:1.3; border:1px solid var(--stroke); }
+  .ba-cell.today{ background:rgba(251,113,133,.06); border-color:rgba(251,113,133,.2); color:#f3c9d0; }
+  .ba-cell.with{ background:rgba(52,211,153,.07); border-color:rgba(52,211,153,.25); color:#c9f4e1; }
+
+  /* diff list */
+  .diff{ display:flex; gap:12px; align-items:flex-start; padding:11px 13px; border-radius:13px; background:var(--card); border:1px solid var(--stroke); }
+  .diff .ic{ width:34px;height:34px;border-radius:10px; display:grid; place-items:center; flex:none; background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(167,139,250,.18)); border:1px solid var(--stroke2); }
+  .diff .ic svg{ width:18px;height:18px; color:#bff4fb; }
+  .diff .txt b{ font-family:'Sora'; font-size:13.6px; }
+  .diff .txt p{ margin:2px 0 0; font-size:12.8px; color:var(--muted); line-height:1.35; }
+
+  /* persona / callout */
+  .callout{ border-left:3px solid var(--cyan); padding:12px 16px; background:linear-gradient(90deg,rgba(34,211,238,.08),transparent); border-radius:0 12px 12px 0; font-size:14.5px; color:#dbe4f8; }
+  .metric{ display:flex; align-items:baseline; gap:8px; }
+  .metric .big{ font-family:'Sora'; font-weight:800; font-size:30px; color:#fff; }
+
+  /* timeline */
+  .road{ display:flex; gap:14px; }
+  .road .stage{ flex:1; background:var(--card); border:1px solid var(--stroke); border-radius:14px; padding:14px; position:relative; }
+  .road .stage .pill{ font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--cyan); }
+  .road .stage h4{ font-size:15px; margin:7px 0 6px; }
+  .road .stage p{ font-size:12.8px; color:var(--muted); margin:0; line-height:1.35; }
+
+  /* 48h plan */
+  .plan-row{ display:grid; grid-template-columns:78px 1.2fr 1.4fr; gap:10px; align-items:center; }
+  .plan-row .h{ font-family:'Sora'; font-weight:700; font-size:13px; color:#bff4fb; text-align:center; background:rgba(34,211,238,.08); border:1px solid rgba(34,211,238,.25); border-radius:10px; padding:7px 0; }
+  .plan-row .goal{ font-size:13.5px; }
+  .plan-row .proof{ font-size:12.6px; color:var(--muted); }
+
+  /* footer */
+  .foot{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px solid rgba(255,255,255,.08); font-size:12px; color:var(--muted); }
+  .foot .brand{ display:flex; align-items:center; gap:8px; font-family:'Sora'; font-weight:600; color:#cfd9f2; }
+  .foot .brand .logo{ width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--cyan),var(--violet)); display:grid; place-items:center; }
+  .foot .brand .logo svg{ width:13px;height:13px;color:#06121f; }
+
+  /* title slide */
+  .title-wrap{ display:flex; flex-direction:column; justify-content:center; height:100%; }
+  .title-wrap h1{ font-size:96px; font-weight:800; letter-spacing:-.04em; line-height:.95; }
+  .title-wrap h1 .grad{ background:linear-gradient(105deg,#67e8f9,#a78bfa 55%,#fbbf24); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lede{ font-size:20px; color:#cdd7ee; max-width:820px; margin-top:18px; line-height:1.5; }
+  .team-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:26px; }
+
+  /* PDF button */
+  .pdf-btn{
+    position:fixed; top:20px; right:22px; z-index:40;
+    display:inline-flex; align-items:center; gap:9px;
+    background:linear-gradient(135deg,var(--cyan),var(--violet));
+    color:#04121e; border:0; border-radius:12px; padding:11px 16px;
+    font-family:'Sora'; font-weight:700; font-size:13.5px; cursor:pointer;
+    box-shadow:0 10px 30px rgba(34,211,238,.3); transition:transform .15s ease;
+  }
+  .pdf-btn:hover{ transform:translateY(-2px); }
+  .pdf-btn svg{ width:16px;height:16px; }
+  .reveal.print-pdf .pdf-btn{ display:none !important; }
+  @media print{ .pdf-btn{ display:none !important; } }
+
+  .reveal .progress{ height:4px; color:var(--cyan); }
+  .reveal .slide-number{ background:transparent; color:var(--muted); font-family:'Sora'; }
+
+  .reveal .controls{ color:var(--cyan); }
+</style>
+</head>
+<body>
+
+<div class="aurora"><span></span><span></span><span></span></div>
+
+<button class="pdf-btn" id="pdfBtn" title="Export to PDF">
+  <i data-lucide="download"></i> Download PDF
+</button>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ===================== SLIDE 1 · TEAM / CHALLENGE / SOLUTION ===================== -->
+    <section>
+      <div class="pad">
+        <div class="title-wrap">
+          <span class="eyebrow"><span class="dot"></span> RAKSHAM Round 1 · Track 03 · Deepfake Detection for Financial Communications</span>
+          <h1 style="margin-top:20px;"><span class="grad">TRUVY</span></h1>
+          <p class="lede" style="font-size:23px;color:#e6ecfb;font-weight:500;">
+            Know what's real.
+          </p>
+          <p class="lede">
+            <b style="color:#fff;">One-sentence solution:</b> TRUVY is a verification gate in front of payment release — it weighs audio and video forensics, provenance, language, pressure-language and payment-context signals, never acts on one weak signal, and routes every doubtful instruction through an out-of-band callback and a human reviewer, leaving an evidence record for the fraud team.
+          </p>
+          <div class="team-row">
+            <span class="chip violet"><i data-lucide="users"></i> Team RED HAT</span>
+            <span class="chip"><i data-lucide="user"></i> Waqar Akhtar</span>
+            <span class="chip"><i data-lucide="user"></i> Ojus Mathur</span>
+            <span class="chip"><i data-lucide="user"></i> Ujjwal Sharma</span>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div>
+          <span>Finale · 24–25 October 2026 · IIT Delhi</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 2 · USER / THREAT / HARM ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> The Problem</span>
+            <h2>Who gets hurt, and <span class="accent">in which minute</span></h2>
+            <p class="sub">A social hack wrapped around a technical fake.</p>
+          </div>
+          <div class="idx">02</div>
+        </div>
+
+        <div class="grid g-2-1 grow" style="align-content:start;">
+          <div class="glass">
+            <div class="card-title"><i data-lucide="clock-alert"></i> The scene (illustrative, not a real case)</div>
+            <p style="font-size:14.6px;color:#d7e0f5;line-height:1.5;margin:0;">
+              6:42 pm on a Friday. <b style="color:#fff;">Meera</b>, a payments approver at a mid-sized lender in Delhi, gets a WhatsApp voice note — the managing director, in his familiar Hindi-English cadence, asking her to release a transfer of <b style="color:#fff;">₹[amount]</b> to a vendor’s new account before cut-off. He is boarding a flight and cannot take a call. The voice was cloned from public interview clips, and a short deepfake video of him nodding approval follows to seal the request.
+            </p>
+            <div class="callout" style="margin-top:14px;">
+              Maker-checker controls exist — but the pressure is <b>social, not technical</b>, and the person holding the key is the one being pressured.
+            </div>
+          </div>
+
+          <div class="grid" style="gap:14px;align-content:start;">
+            <div class="glass tint">
+              <div class="card-title"><i data-lucide="user-round"></i> Primary user</div>
+              <p style="font-size:13.8px;color:#d7e0f5;margin:0;">The payments or treasury approver at a bank, NBFC or company.</p>
+            </div>
+            <div class="glass tint">
+              <div class="card-title"><i data-lucide="zap"></i> Harmful moment</div>
+              <p style="font-size:13.8px;color:#d7e0f5;margin:0;">The minute between hearing a trusted voice and releasing funds.</p>
+            </div>
+            <div class="glass tint">
+              <div class="card-title"><i data-lucide="bug"></i> Exact threat pattern</div>
+              <p style="font-size:13.8px;color:#d7e0f5;margin:0;">A cloned executive voice or deepfaked video requesting an urgent transfer or beneficiary change — while discouraging verification.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid g3" style="margin-top:16px;">
+          <div class="glass" style="text-align:center;"><div class="tag">Why India</div><p style="font-size:13px;color:#cdd7ee;margin:8px 0 0;">UPI, digital banking and wallets move money on fast rails — and fraudsters now run on AI.</p></div>
+          <div class="glass" style="text-align:center;"><div class="tag">Second difficulty</div><p style="font-size:13px;color:#cdd7ee;margin:8px 0 0;">Many languages, heavy code-switching, accents detectors handle poorly.</p></div>
+          <div class="glass" style="text-align:center;"><div class="tag">Bounded scope</div><p style="font-size:13px;color:#cdd7ee;margin:8px 0 0;">Voice notes and video that instruct or approve payments. Documents & live calls are named extensions.</p></div>
+        </div>
+
+        <div class="foot"><div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div><span>User · Threat scenario · Harm</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 3 · JOURNEY / FLOW / DIFFERENTIATION ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Current Journey → Product → Differentiation</span>
+            <h2>From “assume real” to <span class="accent">prove or verify</span></h2>
+          </div>
+          <div class="idx">03</div>
+        </div>
+
+        <div class="grid g2 grow" style="align-content:start;">
+          <div class="glass">
+            <div class="card-title"><i data-lucide="arrow-left-right"></i> Today vs With TRUVY</div>
+            <div class="ba-row"><div class="num">1</div><div class="ba-cell today">Hears a familiar voice</div><div class="ba-cell with">Flags the instruction in TRUVY (or workflow sends it automatically)</div></div>
+            <div class="ba-row"><div class="num">2</div><div class="ba-cell today">Voice feels genuine → trust assumed</div><div class="ba-cell with">Verdict with reasons, in seconds <span style="opacity:.7">[to be measured]</span></div></div>
+            <div class="ba-row"><div class="num">3</div><div class="ba-cell today">Urgency discourages a callback</div><div class="ba-cell with">Elevated risk → callback to the directory number</div></div>
+            <div class="ba-row"><div class="num">4</div><div class="ba-cell today">Funds are released</div><div class="ba-cell with">High risk held, routed to a human reviewer</div></div>
+            <div class="ba-row"><div class="num">5</div><div class="ba-cell today">Fraud found later, if at all</div><div class="ba-cell with">Evidence record + one-click report pack</div></div>
+          </div>
+
+          <div class="grid" style="gap:12px;align-content:start;">
+            <div class="card-title" style="color:var(--cyan);"><i data-lucide="route"></i> Product flow</div>
+            <div class="flow">
+              <div class="step"><div class="n">01</div><div class="t">Flag / intake</div></div>
+              <div class="arrow">›</div>
+              <div class="step"><div class="n">02</div><div class="t">Verdict + reasons</div></div>
+              <div class="arrow">›</div>
+              <div class="step"><div class="n">03</div><div class="t">Callback</div></div>
+              <div class="arrow">›</div>
+              <div class="step"><div class="n">04</div><div class="t">Hold / review</div></div>
+              <div class="arrow">›</div>
+              <div class="step"><div class="n">05</div><div class="t">Evidence pack</div></div>
+            </div>
+
+            <div class="card-title" style="color:var(--violet);margin-top:8px;"><i data-lucide="sparkles"></i> Differentiation — four points</div>
+            <div class="diff"><div class="ic"><i data-lucide="git-branch"></i></div><div class="txt"><b>Decision, not detection</b><p>The detector is one signal. The product is the decision and the verification path.</p></div></div>
+            <div class="diff"><div class="ic"><i data-lucide="languages"></i></div><div class="txt"><b>Honest about language</b><p>Where detectors are weaker, TRUVY says so and never issues a “verified real” label.</p></div></div>
+            <div class="diff"><div class="ic"><i data-lucide="phone-call"></i></div><div class="txt"><b>Verification independent of the detector</b><p>An out-of-band callback works even when the detector is wrong.</p></div></div>
+            <div class="diff"><div class="ic"><i data-lucide="file-check-2"></i></div><div class="txt"><b>A response path</b><p>Review, escalation and reporting — where vendor material stops at a score.</p></div></div>
+          </div>
+        </div>
+
+        <div class="foot"><div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div><span>Current journey · Flow · Differentiation</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 4 · CORE DECISION APPROACH ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Core Decision-Making</span>
+            <h2>Many signals, <span class="accent">one safe next step</span></h2>
+            <p class="sub">The Gate is useful when right and harmless when wrong.</p>
+          </div>
+          <div class="idx">04</div>
+        </div>
+
+        <div class="grid g3 grow" style="align-content:start;grid-template-columns:1.15fr .85fr 1fr;">
+          <div class="glass">
+            <div class="card-title"><i data-lucide="radar"></i> Signals &amp; weight rule</div>
+            <ul class="clean sm">
+              <li><b>Forensic scores</b> — audio/video signs of synthesis; audio down-weighted on low-confidence languages.</li>
+              <li><b>Language identification</b> — sets the detector’s confidence ceiling.</li>
+              <li><b>Provenance (C2PA)</b> — presence helps; <i>absence is neutral</i>.</li>
+              <li><b>Pressure cues</b> — urgency, secrecy, “don’t call back”, authority claims; structured flags only.</li>
+              <li><b>Payment context</b> — amount vs history, new beneficiary, off-hours, channel. <b>Strongest signal.</b></li>
+            </ul>
+          </div>
+
+          <div class="grid" style="gap:11px;align-content:start;">
+            <div class="card-title" style="color:#fff;"><i data-lucide="gauge"></i> Risk bands</div>
+            <div class="band low"><div class="b-head"><span class="swatch"></span> Low</div><div class="b-body">Routine, context normal → proceed via maker-checker, log the case.</div></div>
+            <div class="band elevated"><div class="b-head"><span class="swatch"></span> Elevated</div><div class="b-body">Context/pressure flags or inconclusive detector → mandatory callback.</div></div>
+            <div class="band high"><div class="b-head"><span class="swatch"></span> High</div><div class="b-body">Multiple independent signals agree → hold, human reviewer, dual approval.</div></div>
+          </div>
+
+          <div class="glass">
+            <div class="card-title"><i data-lucide="scale"></i> Rules the Gate obeys</div>
+            <ol class="rules">
+              <li>Never act on a single weak signal.</li>
+              <li>New/changed beneficiary above a set amount + any pressure cue → callback, <b>regardless of audio score</b>.</li>
+              <li>Labels: “Consistent with genuine media”, “Inconclusive”, “Signs of synthesis”. No first label in low-confidence languages.</li>
+              <li>Missing provenance is neutral, never incriminating.</li>
+              <li>Payments are held, never auto-rejected.</li>
+              <li>Reviewer may override with a written, logged reason.</li>
+              <li>Callback numbers only from the institution’s directory.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="glass" style="margin-top:14px;">
+          <span class="tag" style="color:var(--cyan);">What the approver sees</span>
+          <p style="font-size:14px;color:#dbe4f8;margin:8px 0 0;line-height:1.45;">
+            “<b>Hold recommended.</b> This request asks for an urgent payment to a new beneficiary outside business hours, and the audio shows signs of synthetic speech. Detector confidence is reduced because the clip is in Hindi. <b>Next step:</b> call the managing director on the number in the company directory — not the one in the message.”
+          </p>
+        </div>
+
+        <div class="foot"><div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div><span>Detection → decision logic</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 5 · DATA / EVIDENCE / VALIDATION / ASSUMPTIONS ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Data · Evidence · Validation</span>
+            <h2>We test the claim, <span class="accent">we don’t assume it</span></h2>
+            <p class="sub">We never invent statistics — anything unmeasured stays marked.</p>
+          </div>
+          <div class="idx">05</div>
+        </div>
+
+        <div class="grid g2 grow" style="align-content:start;">
+          <div class="glass">
+            <div class="card-title"><i data-lucide="book-open"></i> What the literature says</div>
+            <table class="tbl">
+              <tr><td class="lead">SEA-Spoof · 2509.19865</td><td>Severe cross-lingual degradation; restored by fine-tuning on regional data. 300+ hrs incl. Hindi &amp; Tamil.</td></tr>
+              <tr><td class="lead">HAV-DF · 2411.15457</td><td>Hindi audio-video deepfake set; existing methods score lower than English benchmarks.</td></tr>
+              <tr><td class="lead">IndieFake · 2506.19014</td><td>Bonafide/deepfake audio from 50 Indian English speakers; built for accent diversity.</td></tr>
+              <tr><td class="lead">SafeEar · CCS 2024</td><td>Detects deepfake audio without speech content, via prosody/timbre. EER as low as 2.02%. Our privacy reference.</td></tr>
+              <tr><td class="lead">IndicSynth · AIKosh</td><td>4,000+ hrs synthetic speech across 12 Indian languages — a data source.</td></tr>
+            </table>
+            <p style="font-size:12.4px;color:var(--muted);margin:10px 0 0;">Also referenced: Indic-CodecFake / SATYAM · arXiv 2604.19949.</p>
+          </div>
+
+          <div class="grid" style="gap:14px;align-content:start;">
+            <div class="glass tint">
+              <div class="card-title"><i data-lucide="activity"></i> Our own measurement (pre-submission)</div>
+              <p style="font-size:13.4px;color:#d7e0f5;margin:0 0 10px;">Run the <b>untouched</b> pretrained detector on a small Hindi / Tamil / English slice — turning the literature’s claim into our evidence.</p>
+              <div class="grid g3" style="gap:8px;">
+                <div class="glass" style="text-align:center;padding:10px;"><div class="tag">EER · English</div><div class="metric" style="justify-content:center;"><span class="big">—</span></div></div>
+                <div class="glass" style="text-align:center;padding:10px;"><div class="tag">EER · Hindi</div><div class="metric" style="justify-content:center;"><span class="big">—</span></div></div>
+                <div class="glass" style="text-align:center;padding:10px;"><div class="tag">EER · Tamil</div><div class="metric" style="justify-content:center;"><span class="big">—</span></div></div>
+              </div>
+              <p style="font-size:12.2px;color:var(--muted);margin:10px 0 0;">Values measured at finale. If the gap is absent, we say so and lean on the context + callback layers.</p>
+            </div>
+
+            <div class="glass tint">
+              <div class="card-title"><i data-lucide="clipboard-check"></i> What we measure at the finale</div>
+              <ul class="clean sm">
+                <li>Per-language EER on a held-out set; false-positive rate on genuine laptop-mic speech.</li>
+                <li>Clean vs phone-compressed audio (codec degradation test).</li>
+                <li>Decision-level results: frauds held, legitimate cases passed with no friction, time to resolution.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass" style="margin-top:14px;">
+          <div class="card-title"><i data-lucide="list-checks"></i> Key assumptions &amp; how each is tested</div>
+          <table class="tbl" style="font-size:13.4px;">
+            <tr><th>Assumption</th><th>Test</th><th>Assumption</th><th>Test</th></tr>
+            <tr><td>Detectors degrade on Hindi/Tamil</td><td>Baseline run above</td><td>Directory numbers available</td><td>Stated integration assumption</td></tr>
+            <tr><td>Approvers accept one callback</td><td>Shadow-mode pilot; modelled in demo</td><td>Public data calibrates thresholds</td><td>Reported limitation</td></tr>
+            <tr><td>Compression lowers accuracy</td><td>Codec augmentation test</td><td>—</td><td>—</td></tr>
+          </table>
+        </div>
+
+        <div class="foot"><div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div><span>Data · Evidence · Validation · Assumptions</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 6 · PRIVACY / SECURITY / SAFETY / MISUSE ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Responsible AI</span>
+            <h2>Privacy, safety &amp; <span class="accent">misuse safeguards</span></h2>
+          </div>
+          <div class="idx">06</div>
+        </div>
+
+        <div class="grid g2 grow" style="align-content:start;">
+          <table class="tbl">
+            <tr><th style="width:36%;">The brief asks</th><th>Our answer</th></tr>
+            <tr><td class="lead">What data do you need?</td><td>The instruction, its metadata, and payment context. We do <b>not</b> collect customer personal data, credentials or voiceprints — <b>no biometric database</b>. Prototype uses only synthetic, public or consented data.</td></tr>
+            <tr><td class="lead">What happens when wrong?</td><td>No automatic blocking, no accusation from one weak signal, reviewer override, tuning from outcomes.</td></tr>
+            <tr><td class="lead">Who can act on it?</td><td>Approver may request a callback or hold. Only a human reviewer clears a High hold, with dual approval.</td></tr>
+            <tr><td class="lead">How will users understand it?</td><td>Plain-language reasons and a named next step — a score alone is never the explanation.</td></tr>
+            <tr><td class="lead">How does it resist misuse?</td><td>Requester never sees the score. Rate-limited submissions. Role-based, logged access. Any LLM step treats transcripts as untrusted text and may emit structured cue flags only — never a decision.</td></tr>
+          </table>
+
+          <div class="grid" style="gap:13px;align-content:start;">
+            <div class="glass tint">
+              <div class="card-title"><i data-lucide="lock"></i> Further safeguards</div>
+              <ul class="clean sm">
+                <li>Raw audio/video processed <b>ephemerally</b>, deleted after scoring unless escalated — then retained encrypted, limited access, fixed retention.</li>
+                <li>Stored records: hashes, scores, reasons, timestamps — in a <b>tamper-evident log</b>.</li>
+                <li>Bias named openly: accuracy varies by language/accent → language-aware ceiling + reviewer escalation as mitigation.</li>
+              </ul>
+            </div>
+            <div class="grid g2" style="gap:13px;">
+              <div class="glass" style="border-color:rgba(52,211,153,.3);">
+                <div class="card-title"><i data-lucide="shield-alert"></i> When wrong</div>
+                <p style="font-size:12.9px;color:#d7e0f5;margin:0 0 8px;"><b>False positive</b> — a genuine executive flagged: cost is a short callback delay; shadow mode measures this.</p>
+                <p style="font-size:12.9px;color:#d7e0f5;margin:0;"><b>False negative</b> — a clone fools the detector: Rule 2 still fires on payment context → callback gate anyway.</p>
+              </div>
+              <div class="glass" style="border-color:rgba(34,211,238,.3);">
+                <div class="card-title"><i data-lucide="shield-check"></i> Security posture</div>
+                <p style="font-size:12.9px;color:#d7e0f5;margin:0;">Inside the institution’s network boundary, so audio never leaves it. Encryption in transit &amp; at rest, RBAC, tamper-evident audit log, rate limiting. Decision kept partly independent of the detector for adversarial adaptation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="foot"><div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div><span>Privacy · Security · Safety · Misuse</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 7 · ARCHITECTURE / DEPLOYMENT ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Architecture</span>
+            <h2>One diagram, <span class="accent">four layers</span></h2>
+          </div>
+          <div class="idx">07</div>
+        </div>
+
+        <div class="grid g4 grow" style="align-content:start;">
+          <div class="glass">
+            <div class="card-title"><i data-lucide="log-in"></i> 1 · Input boundary</div>
+            <ul class="clean sm">
+              <li>Intake from approver web app or workflow webhook.</li>
+              <li>Consent/authorisation: institution’s own staff under policy.</li>
+            </ul>
+          </div>
+          <div class="glass">
+            <div class="card-title"><i data-lucide="cpu"></i> 2 · Analysis</div>
+            <ul class="clean sm">
+              <li>Audio pre-processing &amp; chunking</li>
+              <li>Language identification</li>
+              <li>Audio detector · video detector (sampled frames)</li>
+              <li>Provenance check · speech-to-text</li>
+              <li>Cue extractor → structured flags</li>
+            </ul>
+          </div>
+          <div class="glass">
+            <div class="card-title"><i data-lucide="git-merge"></i> 3 · Decision</div>
+            <ul class="clean sm">
+              <li>Context engine reads the (synthetic) payment queue &amp; history</li>
+              <li>Decision engine combines signals under 7 rules → a band</li>
+              <li>Explanation generator from templates + actual reasons</li>
+            </ul>
+          </div>
+          <div class="glass">
+            <div class="card-title"><i data-lucide="archive"></i> 4 · Action &amp; evidence</div>
+            <ul class="clean sm">
+              <li>Callback task generator (directory)</li>
+              <li>Reviewer queue &amp; case management</li>
+              <li>Evidence store: hashes, scores, reasons, log</li>
+              <li>Report-pack generator for fraud team &amp; cybercrime channel</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:18px;">
+          <div class="step" style="padding:14px;"><div class="n">01</div><div class="t">Instruction arrives</div></div>
+          <div class="arrow">→</div>
+          <div class="step" style="padding:14px;"><div class="n">02</div><div class="t">Signals produced</div></div>
+          <div class="arrow">→</div>
+          <div class="step" style="padding:14px;"><div class="n">03</div><div class="t">Band assigned</div></div>
+          <div class="arrow">→</div>
+          <div class="step" style="padding:14px;"><div class="n">04</div><div class="t">Reasons + next step</div></div>
+          <div class="arrow">→</div>
+          <div class="step" style="padding:14px;"><div class="n">05</div><div class="t">Callback / review</div></div>
+          <div class="arrow">→</div>
+          <div class="step" style="padding:14px;"><div class="n">06</div><div class="t">Evidence + report pack</div></div>
+        </div>
+
+        <div class="grid g3" style="margin-top:16px;">
+          <div class="glass" style="text-align:center;"><div class="tag">Performance assumption</div><p style="font-size:12.8px;color:#cdd7ee;margin:8px 0 0;">Chunked, seconds-scale. No latency claim until measured on finale hardware.</p></div>
+          <div class="glass" style="text-align:center;"><div class="tag">Friction target</div><p style="font-size:12.8px;color:#cdd7ee;margin:8px 0 0;">Zero extra steps for Low · one callback for Elevated.</p></div>
+          <div class="glass" style="text-align:center;"><div class="tag">Integration point</div><p style="font-size:12.8px;color:#cdd7ee;margin:8px 0 0;">A pre-release gate between maker and checker in the existing approval workflow.</p></div>
+        </div>
+
+        <div class="foot"><div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div><span>Deployment architecture</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 8 · ROLLOUT ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Adoption &amp; Scale</span>
+            <h2>Shadow → advisory → <span class="accent">required hold</span></h2>
+            <p class="sub">Owned by fraud &amp; risk operations; payments ops as daily users.</p>
+          </div>
+          <div class="idx">08</div>
+        </div>
+
+        <div class="road grow" style="align-items:stretch;">
+          <div class="stage">
+            <div class="pill">Stage 1 · Shadow</div>
+            <h4>Observe, no friction</h4>
+            <p>Measure false positives and negatives before any friction is imposed.</p>
+          </div>
+          <div class="stage">
+            <div class="pill">Stage 2 · Advisory</div>
+            <h4>Approvers see verdicts</h4>
+            <p>Verdicts and reasons surface in the workflow; humans still decide freely.</p>
+          </div>
+          <div class="stage">
+            <div class="pill">Stage 3 · Required hold</div>
+            <h4>High band enforced</h4>
+            <p>High-band holds require reviewer sign-off with dual approval.</p>
+          </div>
+          <div class="stage">
+            <div class="pill">Scale</div>
+            <h4>Stateless &amp; extensible</h4>
+            <p>Stateless scoring workers behind a queue. New languages by fine-tuning or swapping the detector. New modalities (video, documents) as adapters into the same decision engine.</p>
+          </div>
+        </div>
+
+        <div class="grid g2" style="margin-top:18px;">
+          <div class="glass">
+            <div class="card-title"><i data-lucide="target"></i> Operating owner</div>
+            <p style="font-size:13.6px;color:#d7e0f5;margin:0;">Fraud and risk operations own the gate; payments operations are the daily users. Integration sits between maker and checker.</p>
+          </div>
+          <div class="glass">
+            <div class="card-title"><i data-lucide="boxes"></i> Extension slots</div>
+            <p style="font-size:13.6px;color:#d7e0f5;margin:0;">Forged documents, screenshots and live-call interception are named extensions — provenance and callback verification are modality-independent, so they plug in later.</p>
+          </div>
+        </div>
+
+        <div class="foot"><div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div><span>Deployment pathway</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 9 · 48-HOUR PLAN ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> The 48-Hour Prototype</span>
+            <h2>Checkpoints, <span class="accent">not promises</span></h2>
+            <p class="sub">Finale 24–25 Oct 2026, IIT Delhi. Compute, internet and pretrained-weight rules confirmed with organisers before submission.</p>
+          </div>
+          <div class="idx">09</div>
+        </div>
+
+        <div class="glass grow" style="display:flex;flex-direction:column;gap:12px;">
+          <div class="plan-row"><div class="h">0–6h</div><div class="goal">Environment, data slices, detector scoring a clip end to end</div><div class="proof">→ a clip in, a score out</div></div>
+          <div class="plan-row"><div class="h">6–16h</div><div class="goal">Pipeline skeleton, language ID, speech-to-text, cue flags, video frame scoring</div><div class="proof">→ signals for a staged call</div></div>
+          <div class="plan-row"><div class="h">16–28h</div><div class="goal">Context engine on synthetic payments, decision engine, explanations</div><div class="proof">→ bands and reasons on three scenarios</div></div>
+          <div class="plan-row"><div class="h">28–38h</div><div class="goal">Evaluation tables, language-aware calibration</div><div class="proof">→ per-language results</div></div>
+          <div class="plan-row"><div class="h">38–45h</div><div class="goal">Reviewer queue, callback task, report pack, demo flow</div><div class="proof">→ the full flow, start to finish</div></div>
+          <div class="plan-row"><div class="h">45–48h</div><div class="goal">Fallbacks, limitations slide, rehearsal</div><div class="proof">→ a clean run-through</div></div>
+        </div>
+
+        <div class="grid g3" style="margin-top:16px;">
+          <div class="glass" style="grid-column:span 2;">
+            <div class="card-title"><i data-lucide="play-circle"></i> Demo script</div>
+            <ul class="clean sm">
+              <li>A genuine executive’s routine request passes with no friction.</li>
+              <li>A cloned-voice note + deepfaked CEO video approving an urgent transfer to a new beneficiary → held, callback generated, report pack produced.</li>
+              <li>A Hindi or Tamil clip is marked low confidence → callback required even if the detector says “real”.</li>
+            </ul>
+            <p style="font-size:12.2px;color:var(--muted);margin:6px 0 0;">Every live step has a pre-recorded fallback.</p>
+          </div>
+          <div class="glass">
+            <div class="card-title"><i data-lucide="life-buoy"></i> Fallback</div>
+            <p style="font-size:13px;color:#d7e0f5;margin:0;">If the detector underperforms we ship the context and callback layers, present the detector as advisory, and report the measured language gap as a finding.</p>
+            <div class="card-title" style="margin-top:14px;"><i data-lucide="plug"></i> Dependencies</div>
+            <p style="font-size:12.6px;color:#d7e0f5;margin:0;">GPU/compute, dataset licences, venue internet, rules on pretrained weights &amp; pre-written code, choice of STT and language-ID models.</p>
+          </div>
+        </div>
+
+        <div class="foot"><div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div><span>48-hour plan · Demo · Fallback</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SLIDE 10 · WHY TRUVY WINS ===================== -->
+    <section>
+      <div class="pad">
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Impact</span>
+            <h2>Why <span class="accent">TRUVY</span> wins</h2>
+            <p class="sub">Defence in depth: useful when right, harmless when wrong.</p>
+          </div>
+          <div class="idx">10</div>
+        </div>
+
+        <div class="grid g2 grow" style="align-content:start;">
+          <div class="diff"><div class="ic"><i data-lucide="shield-alert"></i></div><div class="txt"><b>1 · It still works when the detector fails.</b><p>Payment context and a callback do not depend on audio quality.</p></div></div>
+          <div class="diff"><div class="ic"><i data-lucide="languages"></i></div><div class="txt"><b>2 · It is honest about Indian languages.</b><p>Shows low confidence instead of false certainty — and tests the language gap rather than assuming it.</p></div></div>
+          <div class="diff"><div class="ic"><i data-lucide="phone-call"></i></div><div class="txt"><b>3 · It ends in action.</b><p>Every verdict leads to a callback, a review or a report pack — never just a score.</p></div></div>
+          <div class="diff"><div class="ic"><i data-lucide="hammer"></i></div><div class="txt"><b>4 · It is buildable.</b><p>Narrow scope, a three-scenario demo, hourly checkpoints and a fallback if anything breaks.</p></div></div>
+        </div>
+
+        <div class="glass tint" style="margin-top:16px;">
+          <div class="card-title"><i data-lucide="landmark"></i> Where this lands for an Indian BFSI institution</div>
+          <p style="font-size:14px;color:#dbe4f8;margin:0;line-height:1.5;">
+            A gate in front of payment release that turns a cloned voice or deepfaked video into a <b>held payment, a verified callback and a report pack</b> — instead of a wire that leaves the building. Detection is swappable; the decision logic, verification path and evidence trail are the product.
+          </p>
+        </div>
+
+        <div class="foot">
+          <div class="brand"><span class="logo"><i data-lucide="shield-check"></i></span> TRUVY</div>
+          <span>Team RED HAT · Waqar Akhtar · Ojus Mathur · Ujjwal Sharma</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script>
+  const isPrintPdf = /print-pdf/gi.test(window.location.search);
+
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 1.6,
+    hash: true,
+    controls: true,
+    progress: true,
+    slideNumber: "c/t",
+    transition: "slide",
+    transitionSpeed: "default",
+    backgroundTransition: "fade",
+    center: false,
+    pdfMaxPagesPerSlide: 1,
+    pdfSeparateFragments: false,
+    keyboard: true
+  });
+
+  if (window.lucide) { lucide.createIcons(); }
+
+  document.getElementById("pdfBtn").addEventListener("click", () => {
+    const url = new URL(window.location.href);
+    url.hash = "";
+    url.searchParams.set("print-pdf", "");
+    window.location.href = url.toString();
+  });
+
+  if (isPrintPdf) {
+    window.addEventListener("load", () => {
+      if (window.lucide) { lucide.createIcons(); }
+      setTimeout(() => window.print(), 1400);
+    });
+  }
+</script>
+</body>
+</html>
