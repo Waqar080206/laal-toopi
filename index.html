@@ -88,8 +88,8 @@
               <div class="marker">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
               </div>
-              <span class="cap">Verification boundary</span>
-              <span class="cap cap to left">Recognised voice</span>
+              <span class="cap cap--right">Verification boundary</span>
+              <span class="cap cap--left">Recognised voice</span>
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">The Product</span>
-            <h2 class="slide-title slide-title to sm">From Detecting Deception to <span class="accent">Verifying Intent.</span></h2>
+            <h2 class="slide-title slide-title--sm">From Detecting Deception to <span class="accent">Verifying Intent.</span></h2>
           </div>
           <div class="slide-head__meta">03 / 14<br />Three capabilities</div>
         </div>
@@ -203,7 +203,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">The Workflow</span>
-            <h2 class="slide-title slide-title to sm">Every Suspicious Instruction Has a <span class="accent">Verification Path.</span></h2>
+            <h2 class="slide-title slide-title--sm">Every Suspicious Instruction Has a <span class="accent">Verification Path.</span></h2>
           </div>
           <div class="slide-head__meta">04 / 14<br />Proposed flow</div>
         </div>
@@ -244,24 +244,24 @@
 
           <div class="wf-node wf-node to incoming" style="border-color:rgba(229,72,77,0.4);">
             <div class="wf-node__title">Risk assessment</div>
-            <div class="wf-node__sub">Combine signals under explicit rules → a risk band</div>
+            <div class="wf-node__sub">Combine signals under explicit rules · a risk band</div>
           </div>
 
           <div class="wf-arrow-v" aria-hidden="true"><span></span></div>
 
           <div class="wf-outcomes">
-            <article class="outcome outcome to low">
-              <span class="badge badge to low">Low</span>
+            <article class="outcome outcome--low">
+              <span class="badge badge--low">Low</span>
               <h4>Continue</h4>
               <p>Proceed through normal maker-checker controls and log the case.</p>
             </article>
-            <article class="outcome outcome to elevated">
-              <span class="badge badge to elevated">Elevated</span>
+            <article class="outcome outcome--elevated">
+              <span class="badge badge--elevated">Elevated</span>
               <h4>Callback</h4>
               <p>Require an independent callback before payment release.</p>
             </article>
-            <article class="outcome outcome to high">
-              <span class="badge badge to high">High</span>
+            <article class="outcome outcome--high">
+              <span class="badge badge--high">High</span>
               <h4>Hold &amp; review</h4>
               <p>Hold the payment for human review and require dual approval.</p>
             </article>
@@ -284,7 +284,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">Technical Approach</span>
-            <h2 class="slide-title slide-title to sm">Multiple Signals. One <span class="accent">Explainable Risk Assessment.</span></h2>
+            <h2 class="slide-title slide-title--sm">Multiple Signals. One <span class="accent">Explainable Risk Assessment.</span></h2>
           </div>
           <div class="slide-head__meta">05 / 14<br />Proposed architecture</div>
         </div>
@@ -344,7 +344,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">Evidence &amp; Validation</span>
-            <h2 class="slide-title slide-title to sm">Measure the Risk. <span class="accent">Validate the Decisions.</span></h2>
+            <h2 class="slide-title slide-title--sm">Measure the Risk. <span class="accent">Validate the Decisions.</span></h2>
           </div>
           <div class="slide-head__meta">06 / 14<br />Plan, not results</div>
         </div>
@@ -401,7 +401,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">Privacy, Security &amp; Safety</span>
-            <h2 class="slide-title slide-title to sm">Trust Requires <span class="accent">More Than Detection.</span></h2>
+            <h2 class="slide-title slide-title--sm">Trust Requires <span class="accent">More Than Detection.</span></h2>
           </div>
           <div class="slide-head__meta">07 / 14<br />Constraints</div>
         </div>
@@ -464,7 +464,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">Deployment</span>
-            <h2 class="slide-title slide-title to sm">Built to Fit Existing <span class="accent">Financial Workflows.</span></h2>
+            <h2 class="slide-title slide-title--sm">Built to Fit Existing <span class="accent">Financial Workflows.</span></h2>
           </div>
           <div class="slide-head__meta">08 / 14<br />Conceptual integration</div>
         </div>
@@ -518,7 +518,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">The 48-Hour Prototype</span>
-            <h2 class="slide-title slide-title to sm">From Signal to Decision <span class="accent">in 48 Hours.</span></h2>
+            <h2 class="slide-title slide-title--sm">From Signal to Decision <span class="accent">in 48 Hours.</span></h2>
           </div>
           <div class="slide-head__meta">09 / 14<br />Checkpoints</div>
         </div>
@@ -590,7 +590,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">ARCHITECTURE</span>
-            <h2 class="slide-title slide-title to sm">From Financial Communication to <span class="accent">Verifiable Decision.</span></h2>
+            <h2 class="slide-title slide-title--sm">From Financial Communication to <span class="accent">Verifiable Decision.</span></h2>
             <p class="anno">TRUVY combines media forensics, contextual risk analysis, and independent verification into a human-supervised workflow.</p>
           </div>
           <div class="slide-head__meta">11 / 14<br />End-to-end system architecture</div>
@@ -613,7 +613,7 @@
               <div class="node-sm"><span class="nlabel-sm">Secure media processing</span><span class="nsub-sm">Normalization, decode, temp artifacts</span></div>
               <div class="node-sm"><span class="nlabel-sm">Provenance &amp; evidence capture</span><span class="nsub-sm">Hashes, timestamps, C2PA where available</span></div>
             </div>
-            <div class="bound-label">UNTRUSTED INPUT → CONTROLLED PROCESSING</div>
+            <div class="bound-label">UNTRUSTED INPUT · CONTROLLED PROCESSING</div>
             <div class="outbox"><span class="nlabel-sm">Normalized media + metadata + evidence ref</span></div>
           </div>
           <div class="arch-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
@@ -662,9 +662,9 @@
           <div class="arch-zone">
             <span class="zone-label">05 | Controlled Response</span>
             <div class="outcomes">
-              <div class="outcome outcome to low"><span class="badge badge to low">Low</span><p>Normal maker-checker • log</p></div>
-              <div class="outcome outcome to elevated"><span class="badge badge to elevated">Elevated</span><p>Independent callback (trusted directory)</p></div>
-              <div class="outcome outcome to high"><span class="badge badge to high">High</span><p>Hold • human review • dual approval</p></div>
+              <div class="outcome outcome--low"><span class="badge badge--low">Low</span><p>Normal maker-checker • log</p></div>
+              <div class="outcome outcome--elevated"><span class="badge badge--elevated">Elevated</span><p>Independent callback (trusted directory)</p></div>
+              <div class="outcome outcome--high"><span class="badge badge--high">High</span><p>Hold • human review • dual approval</p></div>
             </div>
             <p class="arch-note">Risk determines verification requirements  ·  not a verdict of fraud.</p>
           </div>
@@ -686,7 +686,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">ARCHITECTURE</span>
-            <h2 class="slide-title slide-title to sm">Multiple Signals. One <span class="accent">Explainable Risk Assessment.</span></h2>
+            <h2 class="slide-title slide-title--sm">Multiple Signals. One <span class="accent">Explainable Risk Assessment.</span></h2>
             <p class="anno">TRUVY separates media authenticity, contextual warning signs, and institutional policy before recommending an action.</p>
           </div>
           <div class="slide-head__meta">12 / 14<br />Pipeline &amp; decision logic</div>
@@ -700,9 +700,9 @@
         </div>
         <div class="arch-table" style="margin-top:6px;">
           <div class="arch-row head"><div>Risk Band</div><div>Interpretation</div><div>Recommended Action</div><div>Qualification</div></div>
-          <div class="arch-row"><div><span class="badge badge to low">Low</span></div><div><span class="nsub-sm">No escalation threshold met</span></div><div><span class="nsub-sm">Normal maker-checker • log</span></div><div><span class="nsub-sm">Does not guarantee genuine</span></div></div>
-          <div class="arch-row"><div><span class="badge badge to elevated">Elevated</span></div><div><span class="nsub-sm">Indicators justify verification</span></div><div><span class="nsub-sm">Independent callback (trusted directory)</span></div><div><span class="nsub-sm">Request for verification • not fraud</span></div></div>
-          <div class="arch-row"><div><span class="badge badge to high">High</span></div><div><span class="nsub-sm">Policy concern requiring escalation</span></div><div><span class="nsub-sm">Hold • human review • dual approval</span></div><div><span class="nsub-sm">Not automatic fraud finding</span></div></div>
+          <div class="arch-row"><div><span class="badge badge--low">Low</span></div><div><span class="nsub-sm">No escalation threshold met</span></div><div><span class="nsub-sm">Normal maker-checker • log</span></div><div><span class="nsub-sm">Does not guarantee genuine</span></div></div>
+          <div class="arch-row"><div><span class="badge badge--elevated">Elevated</span></div><div><span class="nsub-sm">Indicators justify verification</span></div><div><span class="nsub-sm">Independent callback (trusted directory)</span></div><div><span class="nsub-sm">Request for verification • not fraud</span></div></div>
+          <div class="arch-row"><div><span class="badge badge--high">High</span></div><div><span class="nsub-sm">Policy concern requiring escalation</span></div><div><span class="nsub-sm">Hold • human review • dual approval</span></div><div><span class="nsub-sm">Not automatic fraud finding</span></div></div>
         </div>
         <div class="arch-cols">
           <div class="arch-zone"><span class="zone-label">Evidence package</span><div class="branches" style="grid-template-columns:repeat(3,1fr);"><div class="branch"><span class="branch-title">Signals</span><span class="nsub-sm">Scores, confidence, availability</span></div><div class="branch"><span class="branch-title">Context</span><span class="nsub-sm">Transcript, timing, beneficiary</span></div><div class="branch"><span class="branch-title">Audit</span><span class="nsub-sm">Hashes, versions, rationale</span></div></div></div>
@@ -719,7 +719,7 @@
         <div class="slide-head">
           <div>
             <span class="eyebrow">ARCHITECTURE</span>
-            <h2 class="slide-title slide-title to sm">Trust Must Be <span class="accent">Engineered, Not Assumed.</span></h2>
+            <h2 class="slide-title slide-title--sm">Trust Must Be <span class="accent">Engineered, Not Assumed.</span></h2>
             <p class="anno">TRUVY limits data exposure, resists common tactics, and makes model limitations visible to reviewers.</p>
           </div>
           <div class="slide-head__meta">13 / 14<br />Security • Privacy • Validation</div>
@@ -790,6 +790,8 @@
 <script src="js/deck.js"></script>
 </body>
 </html>
+
+
 
 
 
