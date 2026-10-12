@@ -29,7 +29,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
 
-    <span class="toolbar__counter" id="counter" aria-live="polite"><b>01</b> / 14</span>
+    <span class="toolbar__counter" id="counter" aria-live="polite"><b>01</b> / 16</span>
 
     <button class="tbtn" id="btnNext" aria-label="Next slide" title="Next (→)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -584,103 +584,269 @@
             </div>
           </div>
         </div>
-      </section><! to  ============ SLIDE 11 · ARCHITECTURE END-TO-END ============  to >
-      <section class="slide" id="slide-11" data-title="From Financial Communication to Verifiable Decision" data-section="ARCHITECTURE" aria-label="Architecture: end-to-end system">
-        <div class="slide__grid-bg" aria-hidden="true"></div>
-        <div class="slide-head">
-          <div>
-            <span class="eyebrow">ARCHITECTURE</span>
-            <h2 class="slide-title slide-title--sm">From Financial Communication to <span class="accent">Verifiable Decision.</span></h2>
-            <p class="anno">TRUVY combines media forensics, contextual risk analysis, and independent verification into a human-supervised workflow.</p>
+      </section>
+      <!-- ============ SLIDE 11 · ARCHITECTURE END-TO-END ============ -->
+<section
+  class="slide"
+  id="slide-11"
+  data-title="From Financial Communication to Verifiable Decision"
+  data-section="ARCHITECTURE"
+  aria-label="Architecture: end-to-end system"
+>
+  <div class="slide__grid-bg" aria-hidden="true"></div>
+
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">ARCHITECTURE</span>
+
+      <h2 class="slide-title slide-title--sm">
+        From Financial Communication to
+        <span class="accent">Verifiable Decision.</span>
+      </h2>
+
+      <p class="anno">
+        TRUVY combines media forensics, contextual risk analysis, and
+        independent verification into a human-supervised workflow.
+      </p>
+    </div>
+
+    <div class="slide-head__meta">
+      11 / 14<br />
+      End-to-end system architecture
+    </div>
+  </div>
+
+  <!-- TWO-COLUMN ARCHITECTURE -->
+  <div class="arch-layout">
+
+    <!-- LEFT COLUMN: INPUT AND SIGNAL EXTRACTION -->
+    <div class="arch-column arch-column--left">
+
+      <!-- 01: INCOMING COMMUNICATION -->
+      <div class="arch-zone">
+        <span class="zone-label">01 | Incoming Communication</span>
+
+        <div class="zone-blocks">
+          <div class="node">
+            <span class="nlabel">Audio message</span>
+            <span class="nsub">Voice note or recording</span>
           </div>
-          <div class="slide-head__meta">11 / 14<br />End-to-end system architecture</div>
+
+          <div class="node">
+            <span class="nlabel">Video message</span>
+            <span class="nsub">Video recording or extract</span>
+          </div>
+
+          <div class="node">
+            <span class="nlabel">Metadata and transaction context</span>
+            <span class="nsub">
+              Sender, channel, timing, amount, beneficiary
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02: SECURE INGESTION -->
+      <div class="arch-zone">
+        <span class="zone-label">02 | Secure Ingestion</span>
+
+        <div class="zone-cols">
+          <div class="node-sm">
+            <span class="nlabel-sm">Input validation</span>
+            <span class="nsub-sm">Format, size, rate limiting</span>
+          </div>
+
+          <div class="node-sm">
+            <span class="nlabel-sm">Secure media processing</span>
+            <span class="nsub-sm">
+              Normalization, decoding, temporary artifacts
+            </span>
+          </div>
+
+          <div class="node-sm">
+            <span class="nlabel-sm">Provenance and evidence</span>
+            <span class="nsub-sm">
+              Hashes, timestamps, C2PA where available
+            </span>
+          </div>
         </div>
 
-        <div class="arch-stage">
-          <div class="arch-zone">
-            <span class="zone-label">01 | Incoming Communication</span>
-            <div class="zone-blocks">
-              <div class="node"><span class="nlabel">Audio message</span><span class="nsub">Voice note / recording</span></div>
-              <div class="node"><span class="nlabel">Video message</span><span class="nsub">Video or extract</span></div>
-              <div class="node"><span class="nlabel">Metadata &amp; transaction context</span><span class="nsub">Sender, channel, timing, amount, beneficiary</span></div>
-            </div>
-          </div>
-          <div class="arch-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
-          <div class="arch-zone">
-            <span class="zone-label">02 | Secure Ingestion</span>
-            <div class="zone-cols">
-              <div class="node-sm"><span class="nlabel-sm">Input validation</span><span class="nsub-sm">Format, size, rate limiting</span></div>
-              <div class="node-sm"><span class="nlabel-sm">Secure media processing</span><span class="nsub-sm">Normalization, decode, temp artifacts</span></div>
-              <div class="node-sm"><span class="nlabel-sm">Provenance &amp; evidence capture</span><span class="nsub-sm">Hashes, timestamps, C2PA where available</span></div>
-            </div>
-            <div class="bound-label">UNTRUSTED INPUT · CONTROLLED PROCESSING</div>
-            <div class="outbox"><span class="nlabel-sm">Normalized media + metadata + evidence ref</span></div>
-          </div>
-          <div class="arch-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
-          <div class="arch-zone arch-wide">
-            <span class="zone-label">03 | Parallel Signal Extraction</span>
-            <div class="branches">
-              <div class="branch">
-                <span class="branch-title">Audio forensics</span>
-                <div class="node-tiny"><span>Audio authenticity model</span></div>
-                <div class="node-tiny"><span>Quality &amp; manipulation indicators</span></div>
-                <span class="res">Audio evidence + confidence</span>
-              </div>
-              <div class="branch">
-                <span class="branch-title">Video forensics</span>
-                <div class="node-tiny"><span>Frame sampling &amp; aggregation</span></div>
-                <div class="node-tiny"><span>Video authenticity signals</span></div>
-                <span class="res">Video evidence + confidence</span>
-              </div>
-              <div class="branch">
-                <span class="branch-title">Language &amp; speech</span>
-                <div class="node-tiny"><span>Lang ID • STT • confidence</span></div>
-                <div class="node-tiny"><span>Structured pressure cues</span></div>
-                <span class="res">Language/context signals</span>
-              </div>
-              <div class="branch">
-                <span class="branch-title">Provenance &amp; payment context</span>
-                <div class="node-tiny"><span>C2PA / provenance</span></div>
-                <div class="node-tiny"><span>Beneficiary, timing, amount, policy</span></div>
-                <span class="res">Context + provenance evidence</span>
-              </div>
-            </div>
-          </div>
+        <div class="bound-label">
+          UNTRUSTED INPUT · CONTROLLED PROCESSING
         </div>
 
-        <div class="arch-lower">
-          <div class="arch-zone">
-            <span class="zone-label">04 | Evidence Fusion &amp; Policy Engine</span>
-            <div class="engine">
-              <div class="eng-block"><span>Signal availability &amp; quality gate</span></div>
-              <div class="eng-block"><span>Evidence fusion (authenticity • context • provenance)</span></div>
-              <div class="eng-block"><span>Policy rules • explainable rationale</span></div>
-              <div class="eng-block eng-core"><span>Risk classification • Structured Risk Assessment</span></div>
+        <div class="outbox">
+          <span class="nlabel-sm">
+            Normalized media + metadata + evidence reference
+          </span>
+        </div>
+      </div>
+
+      <!-- 03: PARALLEL SIGNAL EXTRACTION -->
+      <div class="arch-zone arch-wide">
+        <span class="zone-label">03 | Parallel Signal Extraction</span>
+
+        <div class="branches">
+
+          <div class="branch">
+            <span class="branch-title">Audio Forensics</span>
+
+            <div class="node-tiny">
+              <span>Audio authenticity model</span>
             </div>
+
+            <div class="node-tiny">
+              <span>Quality and manipulation indicators</span>
+            </div>
+
+            <span class="res">Audio evidence + confidence</span>
           </div>
-          <div class="arch-conn arch-conn-v" aria-hidden="true"><span class="line-v"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 0l5 10H0z"/></svg></div>
-          <div class="arch-zone">
-            <span class="zone-label">05 | Controlled Response</span>
-            <div class="outcomes">
-              <div class="outcome outcome--low"><span class="badge badge--low">Low</span><p>Normal maker-checker • log</p></div>
-              <div class="outcome outcome--elevated"><span class="badge badge--elevated">Elevated</span><p>Independent callback (trusted directory)</p></div>
-              <div class="outcome outcome--high"><span class="badge badge--high">High</span><p>Hold • human review • dual approval</p></div>
+
+          <div class="branch">
+            <span class="branch-title">Video Forensics</span>
+
+            <div class="node-tiny">
+              <span>Frame sampling and aggregation</span>
             </div>
-            <p class="arch-note">Risk determines verification requirements  ·  not a verdict of fraud.</p>
+
+            <div class="node-tiny">
+              <span>Video authenticity signals</span>
+            </div>
+
+            <span class="res">Video evidence + confidence</span>
           </div>
-          <div class="arch-conn arch-conn-v" aria-hidden="true"><span class="line-v"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 0l5 10H0z"/></svg></div>
-          <div class="arch-zone">
-            <span class="zone-label">06 | Human-led Financial Workflow</span>
-            <div class="wf-row">
-              <div class="node-sm"><span class="nlabel-sm">Authorized reviewer / analyst console</span><span class="nsub-sm">Inspect signals, rationale, evidence</span></div>
-              <div class="node-sm"><span class="nlabel-sm">Independent identity verification</span><span class="nsub-sm">Via trusted contact details only</span></div>
-              <div class="node-sm"><span class="nlabel-sm">Maker-checker • payment workflow</span><span class="nsub-sm">Institutional controls retained</span></div>
+
+          <div class="branch">
+            <span class="branch-title">Language and Speech</span>
+
+            <div class="node-tiny">
+              <span>Language ID, STT, confidence</span>
             </div>
-            <div class="audit"><span class="label">Tamper-evident audit trail</span><span class="nsub-sm">Case IDs, hashes, timestamps, versions, decisions</span></div>
+
+            <div class="node-tiny">
+              <span>Structured pressure cues</span>
+            </div>
+
+            <span class="res">Language and context signals</span>
+          </div>
+
+          <div class="branch">
+            <span class="branch-title">Provenance and Payment</span>
+
+            <div class="node-tiny">
+              <span>C2PA and provenance</span>
+            </div>
+
+            <div class="node-tiny">
+              <span>Beneficiary, timing, amount, policy</span>
+            </div>
+
+            <span class="res">Context and provenance evidence</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CENTRAL DIVIDER -->
+    <div class="arch-divider" aria-hidden="true"></div>
+
+    <!-- RIGHT COLUMN: DECISION AND RESPONSE -->
+    <div class="arch-column arch-column--right">
+
+      <!-- 04: EVIDENCE FUSION -->
+      <div class="arch-zone">
+        <span class="zone-label">04 | Evidence Fusion and Policy Engine</span>
+
+        <div class="engine">
+          <div class="eng-block">
+            <span>Signal availability and quality gate</span>
+          </div>
+
+          <div class="eng-block">
+            <span>Evidence fusion: authenticity, context, provenance</span>
+          </div>
+
+          <div class="eng-block">
+            <span>Policy rules and explainable rationale</span>
+          </div>
+
+          <div class="eng-block eng-core">
+            <span>Risk classification and structured assessment</span>
           </div>
         </div>
-        <div class="footline"><span><b>TRUVY</b> · Know what's real. · ARCHITECTURE</span><span>11 / 14</span></div>
-      </section><! to  ============ SLIDE 12 · ARCHITECTURE PIPELINE & DECISION LOGIC ============  to >
+      </div>
+
+      <!-- 05: CONTROLLED RESPONSE -->
+      <div class="arch-zone">
+        <span class="zone-label">05 | Controlled Response</span>
+
+        <div class="outcomes">
+
+          <div class="outcome outcome--low">
+            <span class="badge badge--low">Low</span>
+            <p>Normal maker-checker controls and audit logging</p>
+          </div>
+
+          <div class="outcome outcome--elevated">
+            <span class="badge badge--elevated">Elevated</span>
+            <p>Independent callback through a trusted directory</p>
+          </div>
+
+          <div class="outcome outcome--high">
+            <span class="badge badge--high">High</span>
+            <p>Hold for human review and required approval</p>
+          </div>
+
+        </div>
+
+        <p class="arch-note">
+          Risk determines verification requirements, not a verdict of fraud.
+        </p>
+      </div>
+
+      <!-- 06: HUMAN-LED FINANCIAL WORKFLOW -->
+      <div class="arch-zone">
+        <span class="zone-label">06 | Human-Led Financial Workflow</span>
+
+        <div class="wf-row">
+
+          <div class="node-sm">
+            <span class="nlabel-sm">Authorized reviewer</span>
+            <span class="nsub-sm">Inspect signals, rationale, and evidence</span>
+          </div>
+
+          <div class="node-sm">
+            <span class="nlabel-sm">Independent verification</span>
+            <span class="nsub-sm">Use trusted institutional contact details</span>
+          </div>
+
+          <div class="node-sm">
+            <span class="nlabel-sm">Maker-checker workflow</span>
+            <span class="nsub-sm">Institutional approval controls retained</span>
+          </div>
+
+        </div>
+
+        <div class="audit">
+          <span class="label">Audit Trail</span>
+          <span class="nsub-sm">
+            Case IDs, hashes, timestamps, versions, recorded decisions
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footline">
+    <span><b>TRUVY</b> · Know what's real. · ARCHITECTURE</span>
+    <span>11 / 14</span>
+  </div>
+</section>
+      <! to  ============ SLIDE 12 · ARCHITECTURE PIPELINE & DECISION LOGIC ============  to >
       <section class="slide" id="slide-12" data-title="Multiple Signals. One Explainable Risk Assessment." data-section="ARCHITECTURE" aria-label="Architecture: pipeline and decision logic">
         <div class="slide__grid-bg" aria-hidden="true"></div>
         <div class="slide-head">
@@ -728,7 +894,7 @@
           <div class="arch-zone"><span class="zone-label">Security &amp; privacy layers</span><div class="wf-row"><div class="node-sm"><span class="nlabel-sm">Auth • RBAC • least privilege</span></div><div class="node-sm"><span class="nlabel-sm">Encryption in transit/at rest</span></div><div class="node-sm"><span class="nlabel-sm">Tamper-evident audit</span></div><div class="node-sm"><span class="nlabel-sm">Minimized retention</span></div><div class="node-sm"><span class="nlabel-sm">Versioned policies/models</span></div></div><p class="arch-note">No voiceprint database. Hashes, not full raw exports by default.</p></div>
           <div class="arch-zone"><span class="zone-label">Validation (planned)</span><div class="wf-row"><div class="node-sm"><span class="nlabel-sm">English/Hindi/Tamil</span></div><div class="node-sm"><span class="nlabel-sm">Clean vs compressed</span></div><div class="node-sm"><span class="nlabel-sm">EER/FPR per condition</span></div><div class="node-sm"><span class="nlabel-sm">Latency/failure rates</span></div></div><span class="res">PLANNED VALIDATION  ·  RESULTS PENDING</span></div>
         </div>
-        <div class="arch-table" style="margin-top:4px;">
+        <div class="arch-table" style="margin-top:10px;">
           <div class="arch-row head"><div>Threat</div><div>Potential failure</div><div>Mitigation</div><div>Residual</div></div>
           <div class="arch-row"><div><span class="nsub-sm">Synthetic media</span></div><div><span class="nsub-sm">Evasion / subtle edits</span></div><div><span class="nsub-sm">Multi-signal + independent verification + human review</span></div><div><span class="nsub-sm">Probabilistic; cannot guarantee detection</span></div></div>
           <div class="arch-row"><div><span class="nsub-sm">Low-quality/compressed</span></div><div><span class="nsub-sm">Unreliable scores</span></div><div><span class="nsub-sm">Quality gate marks signals unavailable/low conf</span></div><div><span class="nsub-sm">May remain inconclusive</span></div></div>
@@ -750,59 +916,502 @@
           <div class="footline" style="position:absolute; left:104px; right:104px; bottom:76px;"><span><b>TRUVY</b> · Know what's real.</span><span>14 / 14</span></div>
         </div>
       </section>
-      
+<!-- ============ SLIDE 15 · APPENDIX A · DISCLOSURES ============ -->
+<section
+  class="slide s-app"
+  id="slide-15"
+  data-title="Appendix: AI, Model, Dataset and Asset Disclosures"
+  data-section="APPENDIX A"
+  aria-label="Appendix A: AI, model, dataset and third-party asset disclosures"
+>
+  <div class="slide__grid-bg" aria-hidden="true"></div>
 
-  <div class="progress screen-only" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Appendix A · Disclosures</span>
+      <h2 class="slide-title slide-title--sm">
+        AI, Model, Dataset and <span class="accent">Asset Disclosures.</span>
+      </h2>
+      <p class="anno">
+        Supplementary disclosures covering AI assistance, technical components,
+        datasets, and third-party assets.
+      </p>
+    </div>
+
+    <div class="slide-head__meta">
+      Appendix A<br />
+      Disclosures
+    </div>
+  </div>
+
+  <div class="appx-flag">
+    SUPPLEMENTARY DISCLOSURE · SEPARATE FROM THE 10-SLIDE PITCH AND 3-SLIDE ARCHITECTURE
+  </div>
+
+  <div class="appx-grid2 appx-sec appx-sec--first">
+    <div>
+      <div class="appx-sec__label">A · AI-assisted content</div>
+
+      <table class="appx appx--xs">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Disclosure</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Deck wording, structure and code</td>
+            <td>
+              AI-assisted drafting and development using the tools identified
+              by the team. Final wording and code should be reviewed by the team.
+            </td>
+          </tr>
+          <tr>
+            <td>Architecture structure and diagrams</td>
+            <td>
+              AI-assisted planning and HTML/CSS implementation. Diagrams are
+              rendered using the presentation's HTML and CSS.
+            </td>
+          </tr>
+          <tr>
+            <td>Branding and visual identity</td>
+            <td>
+              Team-led product identity and design decisions. Confirm any
+              AI-assisted or externally sourced elements before submission.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="appx-note">
+        <strong>Technical disclosure:</strong>
+        No measured detection performance is claimed. The proposed runtime
+        design does not delegate payment decisions to a language model.
+        Any planned language-model component is limited to producing
+        structured pressure-cue indicators for downstream assessment.
+      </p>
+
+      <div class="appx-sec__label" style="margin-top:var(--s5);">
+        D · Third-party assets and licences
+      </div>
+
+      <table class="appx appx--xs">
+        <thead>
+          <tr>
+            <th>Asset</th>
+            <th>Source</th>
+            <th>Licence / status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Manrope, Inter, IBM Plex Mono</td>
+            <td>Google Fonts or original font repositories</td>
+            <td>Verify each font's applicable licence.</td>
+          </tr>
+          <tr>
+            <td>Icons and diagrams</td>
+            <td>Inline SVG in the presentation</td>
+            <td>Team-authored assets, subject to verification.</td>
+          </tr>
+          <tr>
+            <td>TRUVY logo</td>
+            <td>Team-supplied asset</td>
+            <td>Confirm ownership and asset provenance.</td>
+          </tr>
+          <tr>
+            <td>C2PA-compatible tooling</td>
+            <td>Candidate tooling</td>
+            <td>Exact tool and licence require confirmation.</td>
+          </tr>
+          <tr>
+            <td>Reveal.js</td>
+            <td>Legacy dependency, if retained</td>
+            <td>Confirm whether it is included or used in this build.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="appx-note">
+        Third-party sources and licences must be verified against the actual
+        assets and dependencies included in the final submission.
+      </p>
+    </div>
+
+    <div>
+      <div class="appx-sec__label">B · Models and components</div>
+
+      <table class="appx appx--xs">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Model / approach</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Media detection and signal extraction</td>
+            <td>Audio, video, speech-to-text and language identification</td>
+            <td>
+              <span class="st st--eval">Under evaluation</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Pressure-cue extraction</td>
+            <td>Structured rules or templates; optional model-assisted flags</td>
+            <td>
+              <span class="st st--planned">Planned</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Media provenance</td>
+            <td>C2PA-compatible verification, where available</td>
+            <td>
+              <span class="st st--eval">Under evaluation</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Risk and policy engine</td>
+            <td>Deterministic rules over available signals</td>
+            <td>
+              <span class="st st--planned">Planned</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Evidence and audit record</td>
+            <td>Evidence hashing and tamper-evident logging</td>
+            <td>
+              <span class="st st--planned">Planned</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="appx-note">
+        <strong>No detection model is finally selected.</strong>
+        Model selection depends on licence review, suitability, language
+        coverage, and the organisers' applicable rules.
+      </p>
+
+      <div class="appx-sec__label" style="margin-top:var(--s5);">
+        C · Dataset candidates
+        <span class="lbl">Not evidence of dataset usage</span>
+      </div>
+
+      <ul class="appx-list appx-list--cols">
+        <li>
+          <strong>SEA-Spoof</strong>
+          <span>Candidate reference; source and licence to verify.</span>
+        </li>
+        <li>
+          <strong>HAV-DF</strong>
+          <span>Candidate reference; source and licence to verify.</span>
+        </li>
+        <li>
+          <strong>IndieFake</strong>
+          <span>Candidate reference; source and licence to verify.</span>
+        </li>
+        <li>
+          <strong>IndicSynth</strong>
+          <span>Candidate reference; availability and terms to verify.</span>
+        </li>
+        <li>
+          <strong>SafeEar</strong>
+          <span>Reference only; dataset access and licence to verify.</span>
+        </li>
+        <li>
+          <strong>Synthetic scenarios</strong>
+          <span>Team-created scenarios, subject to review.</span>
+        </li>
+      </ul>
+
+      <p class="appx-note">
+        <strong>Dataset usage status:</strong>
+        No dataset has been used in the prototype as of submission,
+        if confirmed by the team. Candidate resources remain subject to
+        access, licensing, and suitability review.
+      </p>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span><b>TRUVY</b> · Know what's real. · APPENDIX</span>
+    <span>APP 1 / 2</span>
+  </div>
+</section>
+
+
+<!-- ============ SLIDE 16 · APPENDIX B · STATUS & LIMITATIONS ============ -->
+<section
+  class="slide s-app"
+  id="slide-16"
+  data-title="Appendix: Implementation, Evaluation and Limitations"
+  data-section="APPENDIX B"
+  aria-label="Appendix B: implementation status, evaluation status and key limitations"
+>
+  <div class="slide__grid-bg" aria-hidden="true"></div>
+
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Appendix B · Status and Limits</span>
+      <h2 class="slide-title slide-title--sm">
+        Implementation, Evaluation and <span class="accent">Key Limitations.</span>
+      </h2>
+      <p class="anno">
+        What exists today, how it will be measured, and the boundaries the
+        team acknowledges.
+      </p>
+    </div>
+
+    <div class="slide-head__meta">
+      Appendix B<br />
+      Status and limitations
+    </div>
+  </div>
+
+  <div class="appx-grid2 appx-sec appx-sec--first">
+    <div>
+      <div class="appx-sec__label">A · Implementation status</div>
+
+      <div class="appx-legend">
+        <span class="st st--impl">Implemented</span>
+        <span class="st st--eval">Under evaluation</span>
+        <span class="st st--planned">Planned</span>
+      </div>
+
+      <p class="appx-note">
+        <strong>
+          This submission presents the proposed TRUVY design and architecture,
+          not a running financial-security product.
+        </strong>
+        The current deliverables are the presentation and written design.
+        No runtime detection, risk-decision, or callback workflow is included
+        in this PDF.
+      </p>
+
+      <p class="appx-note">
+        The proposed product components are planned unless separately
+        demonstrated and verified by the team. These include media analysis,
+        payment-context assessment, pressure-cue extraction, evidence fusion,
+        risk-band generation, trusted-directory callback verification,
+        and evidence and audit records.
+      </p>
+
+      <div class="appx-sec__label" style="margin-top:var(--s5);">
+        C · Open dependencies
+      </div>
+
+      <ul class="appx-list">
+        <li>
+          Access, suitability, and licence review for candidate datasets
+          and models.
+        </li>
+        <li>
+          Confirmation of the organisers' rules for pretrained weights,
+          third-party code, and external services.
+        </li>
+        <li>
+          Institutional authorisation, security review, and operational
+          controls before any real deployment.
+        </li>
+        <li>
+          Access to an accurate institutional contact directory for
+          independent callback verification.
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="appx-sec__label">
+        B · Evaluation status
+        <span class="lbl">No measured result is claimed</span>
+      </div>
+
+      <table class="appx appx--xs">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Validation method</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Language performance</td>
+            <td>
+              Per-language EER on suitable licensed English, Hindi,
+              and Tamil evaluation data, where available
+            </td>
+            <td><span class="st st--pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>Genuine vs. manipulated</td>
+            <td>
+              Bona fide and spoof comparison; false-positive rate
+            </td>
+            <td><span class="st st--pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>Clean vs. compressed</td>
+            <td>
+              Evaluate performance across recording and codec conditions
+            </td>
+            <td><span class="st st--pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>False positives and negatives</td>
+            <td>
+              Confusion analysis at defined decision thresholds
+            </td>
+            <td><span class="st st--pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>Latency and failures</td>
+            <td>
+              Timed processing, error handling, and fallback behaviour
+            </td>
+            <td><span class="st st--pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>Policy and escalation correctness</td>
+            <td>
+              Staged scenarios against expected risk bands and
+              verification actions
+            </td>
+            <td><span class="st st--pending">Pending</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="appx-note">
+        Metrics remain <code>PENDING</code> until evaluation is completed.
+        No language coverage, detection accuracy, or latency is claimed
+        without supporting evidence.
+      </p>
+
+      <div class="appx-sec__label" style="margin-top:var(--s5);">
+        D · Key limitations
+        <span class="lbl">Boundaries of the proposed system</span>
+      </div>
+
+      <ul class="appx-list appx-list--num appx-list--cols">
+        <li>Detectors can miss unseen or evolving attacks.</li>
+        <li>Noise and compression can reduce detection reliability.</li>
+        <li>Performance may vary by language, accent, and recording conditions.</li>
+        <li>A detector score is not proof of fraud or authenticity.</li>
+        <li>Missing provenance metadata does not establish manipulation.</li>
+        <li>TRUVY does not automatically reject payments.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span><b>TRUVY</b> · Know what's real. · APPENDIX</span>
+    <span>APP 2 / 2</span>
+  </div>
+</section>
+
+<div class="progress screen-only" aria-hidden="true">
+  <div class="progress__bar" id="progressBar"></div>
+</div>
 </div>
 
-<! to  ===================== OVERVIEW =====================  to >
-<div class="overview screen-only" id="overview" hidden role="dialog" aria-modal="true" aria-label="Slide overview">
+<!-- ===================== OVERVIEW ===================== -->
+<div
+  class="overview screen-only"
+  id="overview"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-label="Slide overview"
+>
   <div class="overview__head">
     <span class="overview__title">Slide overview</span>
-    <button class="tbtn" id="btnOverviewClose" aria-label="Close overview">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+
+    <button
+      class="tbtn"
+      id="btnOverviewClose"
+      aria-label="Close overview"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
       Close
     </button>
   </div>
+
   <div class="overview__grid" id="overviewGrid"></div>
 </div>
 
-<! to  ===================== PDF EXPORT MODAL =====================  to >
-<div class="modal-layer screen-only" id="pdfModal" hidden role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+<!-- ===================== PDF EXPORT MODAL ===================== -->
+<div
+  class="modal-layer screen-only"
+  id="pdfModal"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pdfModalTitle"
+>
   <div class="modal">
     <span class="modal__kicker">Export · PDF</span>
-    <h2 class="modal__title" id="pdfModalTitle">Save the deck as a 14-page PDF</h2>
-    <p class="modal__text">Your browser's print dialog will open. Choose <strong>Save as PDF</strong>. TRUVY has prepared a print stylesheet so each slide fills exactly one landscape page.</p>
+
+    <h2 class="modal__title" id="pdfModalTitle">
+      Save the submission as a 16-page PDF
+    </h2>
+
+    <p class="modal__text">
+      Your browser's print dialog will open. Choose
+      <strong>Save as PDF</strong>. The print stylesheet is intended to
+      place each slide on one landscape page. The complete export contains
+      the 14 original slides followed by 2 appendix pages.
+    </p>
+
     <ul class="modal__steps">
-      <li><span class="k">01</span><span>Destination: <code>Save as PDF</code></span></li>
-      <li><span class="k">02</span><span>Layout: <code>Landscape</code></span></li>
-      <li><span class="k">03</span><span>Margins: <code>None</code></span></li>
-      <li><span class="k">04</span><span>Background graphics: <code>On</code></span></li>
+      <li>
+        <span class="k">01</span>
+        <span>Destination: <code>Save as PDF</code></span>
+      </li>
+      <li>
+        <span class="k">02</span>
+        <span>Layout: <code>Landscape</code></span>
+      </li>
+      <li>
+        <span class="k">03</span>
+        <span>Margins: <code>None</code></span>
+      </li>
+      <li>
+        <span class="k">04</span>
+        <span>Background graphics: <code>On</code></span>
+      </li>
     </ul>
+
     <div class="modal__actions">
-      <button class="tbtn tbtn to primary" id="btnConfirmPrint">Open print dialog</button>
-      <button class="tbtn tbtn to ghost" id="btnCancelPrint">Cancel</button>
+      <button class="tbtn primary" id="btnConfirmPrint">
+        Open print dialog
+      </button>
+
+      <button class="tbtn ghost" id="btnCancelPrint">
+        Cancel
+      </button>
     </div>
-    <p class="modal__note">Filename suggested: <code>TRUVY-RAKSHAM-Round-1-Submission.pdf</code>. Chrome and Edge preserve vector text and diagrams best.</p>
+
+    <p class="modal__note">
+      Filename suggested:
+      <code>TRUVY-RAKSHAM-Round-1-Submission.pdf</code>.
+      Inspect the exported PDF to confirm that all 16 pages render correctly.
+    </p>
   </div>
 </div>
 
 <script src="js/deck.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
