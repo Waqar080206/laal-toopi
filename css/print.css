@@ -1,0 +1,74 @@
+/* ============================================================
+   TRUVY · Print stylesheet
+   Each slide renders as exactly one 16:9 landscape PDF page.
+   ============================================================ */
+
+@page {
+  size: 1600px 900px;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    width: 1600px;
+    height: auto;
+    overflow: visible;
+    background: var(--obsidian) !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Remove all screen-only chrome */
+  .toolbar,
+  .progress,
+  .overview,
+  .modal-layer,
+  .screen-only { display: none !important; }
+
+  .app { position: static; display: block; }
+
+  .viewport {
+    position: static;
+    overflow: visible;
+    background: none;
+  }
+
+  .stage {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  /* Every slide on its own page */
+  .slide {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 1600px;
+    height: 900px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    z-index: auto;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Keep decorative layers painting in print */
+  .slide__grid-bg,
+  .slide__glow { display: block; }
+}

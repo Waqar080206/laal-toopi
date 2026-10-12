@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="TRUVY — AI-powered trust intelligence for financial communications. RAKSHAM Round 1, Track 03 pitch deck." />
+<title>TRUVY-RAKSHAM-Round-1-Pitch-Deck</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/tokens.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/slides.css" />
+<link rel="stylesheet" href="css/print.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===================== TOOLBAR ===================== -->
+  <nav class="toolbar screen-only" aria-label="Presentation controls">
+    <span class="toolbar__brand" aria-hidden="true">
+      <span class="wordmark wordmark--sm">TRU<span class="wm-v">V</span>Y</span>
+    </span>
+
+    <button class="tbtn" id="btnPrev" aria-label="Previous slide" title="Previous (←)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
+    <span class="toolbar__counter" id="counter" aria-live="polite"><b>01</b> / 10</span>
+
+    <button class="tbtn" id="btnNext" aria-label="Next slide" title="Next (→)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+
+    <span class="toolbar__divider" aria-hidden="true"></span>
+
+    <button class="tbtn" id="btnOverview" aria-label="Open slide overview" title="Overview (O)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    </button>
+
+    <button class="tbtn" id="btnFullscreen" aria-label="Toggle fullscreen" title="Fullscreen (F)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V5a1 1 0 0 1 1-1h4"/><path d="M20 9V5a1 1 0 0 0-1-1h-4"/><path d="M4 15v4a1 1 0 0 0 1 1h4"/><path d="M20 15v4a1 1 0 0 1-1 1h-4"/></svg>
+    </button>
+
+    <span class="toolbar__divider" aria-hidden="true"></span>
+
+    <button class="tbtn tbtn--primary" id="btnPdf" aria-label="Download the deck as PDF" title="Download PDF">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+      Download PDF
+    </button>
+  </nav>
+
+  <!-- ===================== VIEWPORT / STAGE ===================== -->
+  <main class="viewport" id="viewport">
+    <div class="stage" id="stage">
+
+      <!-- ============ SLIDE 01 · COVER ============ -->
+      <section class="slide" id="slide-1" data-title="Cover" data-section="RAKSHAM · Round 1 · Track 03" aria-label="Cover slide">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+        <div class="slide__glow" style="left:55%;top:45%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(229,72,77,0.12),transparent 65%);" aria-hidden="true"></div>
+
+        <div class="s-cover">
+          <div class="s-cover__left">
+            <span class="eyebrow">RAKSHAM · Round 1 · Track 03</span>
+            <h1 class="wordmark s-cover__wordmark">TRU<span class="wm-v">V</span>Y</h1>
+            <p class="s-cover__tagline">Know what's real.</p>
+            <p class="s-cover__support">AI-powered trust intelligence for financial communications.</p>
+            <div class="s-cover__rule" aria-hidden="true"></div>
+            <div class="s-cover__team">
+              <span class="label">Team RED HAT</span>
+              <span class="names"><span>Waqar Akhtar</span><span>Ojus Mathur</span><span>Ujjwal Sharma</span></span>
+            </div>
+            <p class="s-cover__challenge">Challenge · Deepfake Detection for Financial Communications</p>
+          </div>
+
+          <div class="s-cover__right" aria-hidden="true">
+            <div class="verify-visual">
+              <svg class="sig" viewBox="0 0 520 700" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;">
+                <polyline points="0,350 24,350 40,306 56,394 72,332 88,368 104,318 120,382 138,350 156,350 172,312 188,388 204,336 220,364 236,326 252,374 260,350"
+                  fill="none" stroke="#F5F4F0" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>
+                <polyline points="260,350 276,350 292,318 308,382 324,340 340,360 356,330 372,370 388,350 404,350 420,322 436,378 452,338 468,362 484,332 500,368 516,350"
+                  fill="none" stroke="#A3A7B0" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7 6" opacity="0.55"/>
+              </svg>
+              <div class="boundary"></div>
+              <div class="marker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              </div>
+              <span class="cap">Verification boundary</span>
+              <span class="cap cap--left">Recognised voice</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SLIDE 02 · PROBLEM ============ -->
+      <section class="slide" id="slide-2" data-title="A Familiar Voice Is No Longer Proof" data-section="The Problem" aria-label="The problem">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">The Problem</span>
+            <h2 class="slide-title">A Familiar Voice Is <span class="accent">No Longer Proof.</span></h2>
+          </div>
+          <div class="slide-head__meta">02 / 10<br />Illustrative</div>
+        </div>
+
+        <div class="s-problem__body">
+          <div class="s-problem__scenario">
+            <span class="illustrative">Illustrative scenario — not a real case</span>
+            <p>A finance officer receives a voice note that sounds exactly like the company's CEO.</p>
+            <p>The message requests an urgent transfer to a new beneficiary. A convincing video appears to confirm the instruction. The sender discourages a callback, claiming to be unavailable.</p>
+            <p><strong>But the real executive never authorised the transaction.</strong></p>
+          </div>
+
+          <div class="s-problem__obs">
+            <div class="obs__item">
+              <span class="obs__num">01 — FAMILIARITY</span>
+              <h3>Familiarity creates trust.</h3>
+              <p>Employees naturally recognise voices, faces and communication patterns. Attackers exploit this familiarity.</p>
+            </div>
+            <div class="obs__item">
+              <span class="obs__num">02 — URGENCY</span>
+              <h3>Urgency suppresses verification.</h3>
+              <p>Time pressure, authority claims, secrecy and callback avoidance encourage employees to bypass normal controls.</p>
+            </div>
+            <div class="obs__item">
+              <span class="obs__num">03 — DETECTION</span>
+              <h3>Detection does not equal prevention.</h3>
+              <p>A media detector can surface signs of manipulation, but its score alone cannot establish whether the financial instruction is legitimate.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="s-problem__foot">
+          <div>
+            <span class="label">Harm</span>
+            <div class="harm-chips" style="margin-top:12px;">
+              <span>Fraudulent transfers</span>
+              <span>Unauthorised beneficiary changes</span>
+              <span>Difficult recovery</span>
+              <span>Operational &amp; reputational damage</span>
+            </div>
+          </div>
+          <p class="s-problem__closing">The vulnerability is not simply a fake voice. It is the gap between <em>recognising</em> someone and <em>verifying</em> that they authorised an instruction.</p>
+        </div>
+
+        <div class="footline"><span><b>TRUVY</b> · Know what's real.</span><span>02 / 10</span></div>
+      </section>
+
+      <!-- ============ SLIDE 03 · PRODUCT ============ -->
+      <section class="slide" id="slide-3" data-title="From Detecting Deception to Verifying Intent" data-section="The Product" aria-label="The product">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">The Product</span>
+            <h2 class="slide-title slide-title--sm">From Detecting Deception to <span class="accent">Verifying Intent.</span></h2>
+          </div>
+          <div class="slide-head__meta">03 / 10<br />Three capabilities</div>
+        </div>
+
+        <div class="s-product__flow">
+          <article class="stage-card">
+            <span class="stage-card__num">01</span>
+            <span class="stage-card__name">DETECT</span>
+            <h3>Identify manipulation</h3>
+            <p>Analyse audio and video for signs of synthetic media or manipulation.</p>
+          </article>
+          <div class="stage-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
+          <article class="stage-card">
+            <span class="stage-card__num">02</span>
+            <span class="stage-card__name">ASSESS</span>
+            <h3>Weigh the context</h3>
+            <p>Combine forensic findings with language confidence, pressure cues and payment context.</p>
+          </article>
+          <div class="stage-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
+          <article class="stage-card stage-card--active">
+            <span class="stage-card__num">03</span>
+            <span class="stage-card__name">VERIFY</span>
+            <h3>Route to trust</h3>
+            <p>Recommend trusted-channel callbacks, human review and evidence documentation.</p>
+          </article>
+        </div>
+
+        <div class="s-product__note">
+          <div class="s-product__diff">
+            <span class="label">Differentiation</span>
+            <p>Conventional media analysis focuses on whether content <strong>appears manipulated</strong>. TRUVY connects media analysis to an <strong>operational decision</strong> and a <strong>verification process</strong> — it does not rely on a single detector score.</p>
+          </div>
+          <p class="s-product__closing">TRUVY helps answer not only whether media looks suspicious, but <span class="accent">what should happen before the associated payment proceeds.</span></p>
+        </div>
+
+        <div class="footline"><span><b>TRUVY</b> · Know what's real.</span><span>03 / 10</span></div>
+      </section>
+
+      <!-- ============ SLIDE 04 · WORKFLOW ============ -->
+      <section class="slide" id="slide-4" data-title="Every Suspicious Instruction Has a Verification Path" data-section="The Workflow" aria-label="The workflow">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">The Workflow</span>
+            <h2 class="slide-title slide-title--sm">Every Suspicious Instruction Has a <span class="accent">Verification Path.</span></h2>
+          </div>
+          <div class="slide-head__meta">04 / 10<br />Proposed flow</div>
+        </div>
+
+        <div class="s-workflow__diagram">
+          <div class="wf-node wf-node--incoming">
+            <div>
+              <div class="wf-node__title">Incoming instruction</div>
+              <div class="wf-node__sub">Audio or video · payment or beneficiary change</div>
+            </div>
+            <span class="badge">Intake</span>
+          </div>
+
+          <div class="wf-arrow-v" aria-hidden="true"><span></span></div>
+
+          <div class="wf-inputs">
+            <div class="wf-node">
+              <span class="label label--crimson">Media analysis</span>
+              <ul class="wf-list">
+                <li>Audio forensics</li>
+                <li>Video analysis</li>
+                <li>Language identification</li>
+                <li>Provenance checks where available</li>
+              </ul>
+            </div>
+            <div class="wf-node">
+              <span class="label label--crimson">Context analysis</span>
+              <ul class="wf-list">
+                <li>Pressure cues</li>
+                <li>Transaction amount</li>
+                <li>Beneficiary changes</li>
+                <li>Timing &amp; communication context</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="wf-arrow-v" aria-hidden="true"><span></span></div>
+
+          <div class="wf-node wf-node--incoming" style="border-color:rgba(229,72,77,0.4);">
+            <div class="wf-node__title">Risk assessment</div>
+            <div class="wf-node__sub">Combine signals under explicit rules → a risk band</div>
+          </div>
+
+          <div class="wf-arrow-v" aria-hidden="true"><span></span></div>
+
+          <div class="wf-outcomes">
+            <article class="outcome outcome--low">
+              <span class="badge badge--low">Low</span>
+              <h4>Continue</h4>
+              <p>Proceed through normal maker-checker controls and log the case.</p>
+            </article>
+            <article class="outcome outcome--elevated">
+              <span class="badge badge--elevated">Elevated</span>
+              <h4>Callback</h4>
+              <p>Require an independent callback before payment release.</p>
+            </article>
+            <article class="outcome outcome--high">
+              <span class="badge badge--high">High</span>
+              <h4>Hold &amp; review</h4>
+              <p>Hold the payment for human review and require dual approval.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="wf-critical">
+          <span class="k">Evidence</span>
+          <p>Every outcome writes an <strong>evidence record and report package</strong>.</p>
+          <p><strong>Critical rule:</strong> callback numbers come from the institution's trusted directory, never from the suspicious message. TRUVY does not automatically reject payments.</p>
+        </div>
+
+        <div class="footline"><span><b>TRUVY</b> · Know what's real.</span><span>04 / 10</span></div>
+      </section>
+
+      <!-- ============ SLIDE 05 · TECHNICAL APPROACH ============ -->
+      <section class="slide" id="slide-5" data-title="Multiple Signals. One Explainable Risk Assessment" data-section="Technical Approach" aria-label="Technical approach">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">Technical Approach</span>
+            <h2 class="slide-title slide-title--sm">Multiple Signals. One <span class="accent">Explainable Risk Assessment.</span></h2>
+          </div>
+          <div class="slide-head__meta">05 / 10<br />Proposed architecture</div>
+        </div>
+
+        <div class="s-tech__layers">
+          <article class="layer">
+            <span class="layer__no">LAYER 01</span>
+            <h3>Media forensics</h3>
+            <p>Audio deepfake detection, sampled-frame video analysis, language identification and provenance checks.</p>
+          </article>
+          <article class="layer">
+            <span class="layer__no">LAYER 02</span>
+            <h3>Communication analysis</h3>
+            <p>Speech-to-text and structured identification of urgency, secrecy, authority claims and callback avoidance.</p>
+          </article>
+          <article class="layer">
+            <span class="layer__no">LAYER 03</span>
+            <h3>Financial context</h3>
+            <p>Transaction amount, beneficiary history, unusual timing and communication-channel anomalies.</p>
+          </article>
+          <article class="layer layer--engine">
+            <span class="layer__no">LAYER 04</span>
+            <h3>Decision engine</h3>
+            <p>Combine signals, apply explicit rules, generate an explanation and route the request for the appropriate action.</p>
+            <span class="layer__tie"></span>
+          </article>
+        </div>
+
+        <div class="s-tech__sig" aria-hidden="true">
+          <span class="tag">Audio · Video · Language · Provenance</span>
+          <span class="tag">Transcript · Pressure cues</span>
+          <span class="tag">Amount · Beneficiary · Timing</span>
+          <span class="tag">Rules · Explanation · Routing</span>
+        </div>
+
+        <div class="s-tech__rule" style="margin-top:var(--s7);">
+          <span class="label label--crimson">Example rule</span>
+          <p>A new or changed beneficiary above a configured threshold, combined with a pressure cue, triggers a callback <strong>regardless of the audio detector's result</strong>.</p>
+        </div>
+
+        <div class="s-tech__out">
+          <div class="s-tech__states">
+            <div class="state"><span class="label label--green">Low</span><p>Normal controls.</p></div>
+            <div class="state"><span class="label label--amber">Elevated</span><p>Trusted callback.</p></div>
+            <div class="state"><span class="label label--crimson">High</span><p>Hold + human review.</p></div>
+          </div>
+          <p class="s-tech__principle">The detector informs the decision. It does <em>not</em> control the decision alone.</p>
+        </div>
+
+        <div class="footline"><span><b>TRUVY</b> · Know what's real.</span><span>05 / 10</span></div>
+      </section>
+
+      <!-- ============ SLIDE 06 · VALIDATION ============ -->
+      <section class="slide" id="slide-6" data-title="Measure the Risk. Validate the Decisions" data-section="Evidence & Validation" aria-label="Evidence and validation">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">Evidence &amp; Validation</span>
+            <h2 class="slide-title slide-title--sm">Measure the Risk. <span class="accent">Validate the Decisions.</span></h2>
+          </div>
+          <div class="slide-head__meta">06 / 10<br />Plan, not results</div>
+        </div>
+
+        <div class="s-val__banner">
+          <span class="label label--amber">Validation plan · Results pending</span>
+          <span>No measured results are claimed at this stage.</span>
+        </div>
+
+        <div class="s-val__grid">
+          <div>
+            <div class="s-val__metrics">
+              <div class="metric-card"><span class="label">Equal Error Rate</span><div class="val">—</div><div class="pending">PENDING</div></div>
+              <div class="metric-card"><span class="label">False-positive rate</span><div class="val">—</div><div class="pending">PENDING</div></div>
+              <div class="metric-card"><span class="label">Per-language</span><div class="val">—</div><div class="pending">PENDING</div></div>
+              <div class="metric-card"><span class="label">End-to-end latency</span><div class="val">—</div><div class="pending">PENDING</div></div>
+              <div class="metric-card"><span class="label">Correct escalations</span><div class="val">—</div><div class="pending">PENDING</div></div>
+            </div>
+            <div class="s-val__resources">
+              <span class="label">Resources under evaluation</span>
+              <span class="res">SEA-Spoof</span><span class="res">HAV-DF</span><span class="res">IndieFake</span><span class="res">IndicSynth</span><span class="res">SafeEar</span>
+            </div>
+          </div>
+
+          <div class="s-val__matrix">
+            <table class="matrix">
+              <caption class="visually-hidden">Per-language validation matrix, results pending</caption>
+              <thead>
+                <tr><th scope="col">Language</th><th scope="col">EER</th><th scope="col">FPR</th><th scope="col">Status</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>English</td><td class="dash">—</td><td class="dash">—</td><td class="dash">Pending</td></tr>
+                <tr><td>Hindi</td><td class="dash">—</td><td class="dash">—</td><td class="dash">Pending</td></tr>
+                <tr><td>Tamil</td><td class="dash">—</td><td class="dash">—</td><td class="dash">Pending</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="s-val__plan">
+          <div class="vplan"><h4>Language performance</h4><p>Evaluate English, Hindi and Tamil samples.</p></div>
+          <div class="vplan"><h4>Recording conditions</h4><p>Compare clean audio with compressed recordings representative of messaging apps.</p></div>
+          <div class="vplan"><h4>Decision quality</h4><p>Genuine instructions, impersonation scenarios, and cases where context matters despite an inconclusive detector.</p></div>
+          <div class="vplan"><h4>Operational performance</h4><p>Measure processing latency, false-positive rates and time to resolution.</p></div>
+        </div>
+
+        <div class="footline"><span><b>TRUVY</b> · Know what's real.</span><span>06 / 10</span></div>
+      </section>
+
+      <!-- ============ SLIDE 07 · SAFETY ============ -->
+      <section class="slide" id="slide-7" data-title="Trust Requires More Than Detection" data-section="Privacy, Security & Safety" aria-label="Privacy, security and safety">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">Privacy, Security &amp; Safety</span>
+            <h2 class="slide-title slide-title--sm">Trust Requires <span class="accent">More Than Detection.</span></h2>
+          </div>
+          <div class="slide-head__meta">07 / 10<br />Constraints</div>
+        </div>
+
+        <div class="s-safe__pillars">
+          <div class="pillar pillar--privacy">
+            <span class="label">Privacy</span>
+            <ul class="list-clean list-clean--green">
+              <li>Prototype uses synthetic, public or consented data</li>
+              <li>No customer credentials</li>
+              <li>No voiceprint database</li>
+              <li>Ephemeral media processing where feasible</li>
+              <li>Defined retention for escalated evidence</li>
+            </ul>
+          </div>
+          <div class="pillar__divider" aria-hidden="true"></div>
+          <div class="pillar pillar--security">
+            <span class="label">Security</span>
+            <ul class="list-clean">
+              <li>Role-based access</li>
+              <li>Encryption in transit and at rest</li>
+              <li>Tamper-evident audit logs</li>
+              <li>Rate limiting</li>
+              <li>Deployment within the institution's security boundary</li>
+            </ul>
+          </div>
+          <div class="pillar__divider" aria-hidden="true"></div>
+          <div class="pillar pillar--human">
+            <span class="label">Human control</span>
+            <ul class="list-clean">
+              <li>No automatic payment rejection</li>
+              <li>No fraud accusation from one weak signal</li>
+              <li>Human review for high-risk cases</li>
+              <li>Documented reviewer overrides</li>
+              <li>Dual approval where required</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="s-safe__fail">
+          <div class="fail-cell fail-cell--fp">
+            <h4>False positive</h4>
+            <p>Verification or review introduces friction, but TRUVY does not independently reject the payment.</p>
+          </div>
+          <div class="fail-cell fail-cell--fn">
+            <h4>False negative</h4>
+            <p>Independent payment-context rules may still trigger verification even when the media detector fails.</p>
+          </div>
+        </div>
+
+        <p class="s-safe__closing">TRUVY is designed to support safer decisions <span class="accent">even when its media detector is imperfect.</span></p>
+
+        <div class="footline"><span><b>TRUVY</b> · Know what's real.</span><span>07 / 10</span></div>
+      </section>
+
+      <!-- ============ SLIDE 08 · DEPLOYMENT ============ -->
+      <section class="slide" id="slide-8" data-title="Built to Fit Existing Financial Workflows" data-section="Deployment" aria-label="Deployment">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">Deployment</span>
+            <h2 class="slide-title slide-title--sm">Built to Fit Existing <span class="accent">Financial Workflows.</span></h2>
+          </div>
+          <div class="slide-head__meta">08 / 10<br />Conceptual integration</div>
+        </div>
+
+        <div class="s-dep__pipeline">
+          <div class="dep-node"><span class="label">Maker</span><div class="dep-node__name">Prepares instruction</div></div>
+          <div class="dep-conn" aria-hidden="true"><span></span></div>
+          <div class="dep-node dep-node--gate"><span class="label">TRUVY</span><div class="dep-node__name">Verification gate</div></div>
+          <div class="dep-conn" aria-hidden="true"><span></span></div>
+          <div class="dep-node dep-node--paths">
+            <span class="label">Recommended action</span>
+            <ul style="margin-top:12px;">
+              <li>Normal controls</li>
+              <li class="p-callback">Trusted callback</li>
+              <li class="p-review">Human review</li>
+            </ul>
+          </div>
+          <div class="dep-conn" aria-hidden="true"><span></span></div>
+          <div class="dep-node"><span class="label">Checker / approver</span><div class="dep-node__name">Authorises release</div></div>
+        </div>
+
+        <div class="s-dep__lower">
+          <div>
+            <span class="label">Adoption pathway</span>
+            <div class="s-dep__stages" style="margin-top:18px;">
+              <div class="astage"><span class="label">Stage 01</span><h4>Shadow mode</h4><p>Measure recommendations without imposing additional transaction friction.</p></div>
+              <div class="astage"><span class="label">Stage 02</span><h4>Advisory mode</h4><p>Present explanations and recommended actions to authorised approvers.</p></div>
+              <div class="astage"><span class="label">Stage 03</span><h4>Controlled enforcement</h4><p>Introduce required verification for designated risk categories with human oversight.</p></div>
+            </div>
+          </div>
+          <div class="s-dep__scale">
+            <span class="label">Scalability</span>
+            <ul class="list-clean" style="margin-top:18px;">
+              <li>Separate media-analysis services from decision logic</li>
+              <li>Support asynchronous processing</li>
+              <li>Allow detectors to be replaced</li>
+              <li>Add communication modalities through modular components</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="s-dep__note">Conceptual architecture — not a claim of an existing production integration.</p>
+
+        <div class="footline"><span><b>TRUVY</b> · Know what's real.</span><span>08 / 10</span></div>
+      </section>
+
+      <!-- ============ SLIDE 09 · ROADMAP ============ -->
+      <section class="slide" id="slide-9" data-title="From Signal to Decision in 48 Hours" data-section="The 48-Hour Plan" aria-label="The 48-hour plan">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">The 48-Hour Prototype</span>
+            <h2 class="slide-title slide-title--sm">From Signal to Decision <span class="accent">in 48 Hours.</span></h2>
+          </div>
+          <div class="slide-head__meta">09 / 10<br />Checkpoints</div>
+        </div>
+
+        <div class="s-road__anchor" style="margin-top:var(--s5);">
+          <span class="big">4<em>8</em></span>
+          <span class="cap">hours · six checkpoints · one end-to-end demonstrator</span>
+        </div>
+
+        <div class="s-road__track">
+          <div class="s-road__line" aria-hidden="true"></div>
+          <div class="s-road__segments">
+            <div class="seg"><div class="h">00–06</div><div class="goal">Environment, data preparation, baseline detector.</div><div class="cp">One clip produces a score.</div></div>
+            <div class="seg"><div class="h">06–16</div><div class="goal">Audio pipeline, language ID, transcription, video analysis.</div><div class="cp">Multiple signals for a staged scenario.</div></div>
+            <div class="seg"><div class="h">16–28</div><div class="goal">Payment-context rules, decision engine, explanations.</div><div class="cp">Three scenarios produce bands &amp; reasons.</div></div>
+            <div class="seg"><div class="h">28–38</div><div class="goal">Evaluation and language-aware calibration.</div><div class="cp">Initial validation tables.</div></div>
+            <div class="seg"><div class="h">38–45</div><div class="goal">Callback workflow, reviewer queue, evidence package.</div><div class="cp">End-to-end demonstration.</div></div>
+            <div class="seg"><div class="h">45–48</div><div class="goal">Fallbacks, limitations and rehearsal.</div><div class="cp">Clean final run-through.</div></div>
+          </div>
+        </div>
+
+        <div class="s-road__lower">
+          <div>
+            <span class="label">Demo scenarios</span>
+            <div class="s-road__demo" style="margin-top:16px;">
+              <div class="demo-card"><span class="n">01</span><p>Legitimate routine instruction.</p></div>
+              <div class="demo-card"><span class="n">02</span><p>Suspected deepfake requesting a transfer to a new beneficiary.</p></div>
+              <div class="demo-card"><span class="n">03</span><p>Low-confidence language scenario requiring contextual verification.</p></div>
+            </div>
+          </div>
+          <div class="s-road__fallback">
+            <span class="label label--amber">Fallback</span>
+            <p>If the media detector underperforms, retain the contextual risk and verification workflow, present the detector as advisory, and report the measured limitations.</p>
+          </div>
+        </div>
+
+        <div class="footline"><span><b>TRUVY</b> · Know what's real.</span><span>09 / 10</span></div>
+      </section>
+
+      <!-- ============ SLIDE 10 · CLOSING ============ -->
+      <section class="slide" id="slide-10" data-title="A Familiar Voice Shouldn't Be Enough to Move Money" data-section="Closing" aria-label="Closing">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+        <div class="slide__glow" style="left:70%;top:30%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(229,72,77,0.13),transparent 65%);" aria-hidden="true"></div>
+
+        <div class="s-close">
+          <span class="eyebrow">Closing</span>
+          <h2 class="s-close__headline">A Familiar Voice Shouldn't Be Enough to <em>Move Money.</em></h2>
+          <p class="s-close__support">TRUVY combines media analysis, contextual risk assessment, trusted verification and evidence-backed human review to help financial institutions make safer decisions before payment release.</p>
+
+          <div class="s-close__caps">
+            <div class="s-close__cap"><span class="label">Detect</span><p>Identify potential media manipulation.</p></div>
+            <div class="s-close__cap"><span class="label">Assess</span><p>Evaluate communication signals and financial context.</p></div>
+            <div class="s-close__cap"><span class="label">Verify</span><p>Route suspicious instructions through trusted channels.</p></div>
+            <div class="s-close__cap"><span class="label">Document</span><p>Preserve reasons and evidence for human review.</p></div>
+          </div>
+
+          <div class="s-close__brand">
+            <span class="wordmark s-close__wordmark">TRU<span class="wm-v">V</span>Y</span>
+            <div class="s-close__brandmeta">
+              <div class="tag">Know what's real.</div>
+              <div>Team RED HAT</div>
+              <div>RAKSHAM · Track 03</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="progress screen-only" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+</div>
+
+<!-- ===================== OVERVIEW ===================== -->
+<div class="overview screen-only" id="overview" hidden role="dialog" aria-modal="true" aria-label="Slide overview">
+  <div class="overview__head">
+    <span class="overview__title">Slide overview</span>
+    <button class="tbtn" id="btnOverviewClose" aria-label="Close overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      Close
+    </button>
+  </div>
+  <div class="overview__grid" id="overviewGrid"></div>
+</div>
+
+<!-- ===================== PDF EXPORT MODAL ===================== -->
+<div class="modal-layer screen-only" id="pdfModal" hidden role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+  <div class="modal">
+    <span class="modal__kicker">Export · PDF</span>
+    <h2 class="modal__title" id="pdfModalTitle">Save the deck as a 10-page PDF</h2>
+    <p class="modal__text">Your browser's print dialog will open. Choose <strong>Save as PDF</strong>. TRUVY has prepared a print stylesheet so each slide fills exactly one landscape page.</p>
+    <ul class="modal__steps">
+      <li><span class="k">01</span><span>Destination: <code>Save as PDF</code></span></li>
+      <li><span class="k">02</span><span>Layout: <code>Landscape</code></span></li>
+      <li><span class="k">03</span><span>Margins: <code>None</code></span></li>
+      <li><span class="k">04</span><span>Background graphics: <code>On</code></span></li>
+    </ul>
+    <div class="modal__actions">
+      <button class="tbtn tbtn--primary" id="btnConfirmPrint">Open print dialog</button>
+      <button class="tbtn tbtn--ghost" id="btnCancelPrint">Cancel</button>
+    </div>
+    <p class="modal__note">Filename suggested: <code>TRUVY-RAKSHAM-Round-1-Pitch-Deck.pdf</code>. Chrome and Edge preserve vector text and diagrams best.</p>
+  </div>
+</div>
+
+<script src="js/deck.js"></script>
+</body>
+</html>
