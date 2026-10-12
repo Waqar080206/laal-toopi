@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -29,7 +29,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
 
-    <span class="toolbar__counter" id="counter" aria-live="polite"><b>01</b> / 10</span>
+    <span class="toolbar__counter" id="counter" aria-live="polite"><b>01</b> / 14</span>
 
     <button class="tbtn" id="btnNext" aria-label="Next slide" title="Next (→)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -584,10 +584,173 @@
             </div>
           </div>
         </div>
-      </section>
+      </section><!-- ============ SLIDE 11 · ARCHITECTURE END-TO-END ============ -->
+      <section class="slide" id="slide-11" data-title="From Financial Communication to Verifiable Decision" data-section="ARCHITECTURE" aria-label="Architecture: end-to-end system">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">ARCHITECTURE</span>
+            <h2 class="slide-title slide-title--sm">From Financial Communication to <span class="accent">Verifiable Decision.</span></h2>
+            <p class="anno">TRUVY combines media forensics, contextual risk analysis, and independent verification into a human-supervised workflow.</p>
+          </div>
+          <div class="slide-head__meta">11 / 14<br />End-to-end system architecture</div>
+        </div>
 
-    </div>
-  </main>
+        <div class="arch-stage">
+          <div class="arch-zone">
+            <span class="zone-label">01 | Incoming Communication</span>
+            <div class="zone-blocks">
+              <div class="node"><span class="nlabel">Audio message</span><span class="nsub">Voice note / recording</span></div>
+              <div class="node"><span class="nlabel">Video message</span><span class="nsub">Video or extract</span></div>
+              <div class="node"><span class="nlabel">Metadata &amp; transaction context</span><span class="nsub">Sender, channel, timing, amount, beneficiary</span></div>
+            </div>
+          </div>
+          <div class="arch-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
+          <div class="arch-zone">
+            <span class="zone-label">02 | Secure Ingestion</span>
+            <div class="zone-cols">
+              <div class="node-sm"><span class="nlabel-sm">Input validation</span><span class="nsub-sm">Format, size, rate limiting</span></div>
+              <div class="node-sm"><span class="nlabel-sm">Secure media processing</span><span class="nsub-sm">Normalization, decode, temp artifacts</span></div>
+              <div class="node-sm"><span class="nlabel-sm">Provenance &amp; evidence capture</span><span class="nsub-sm">Hashes, timestamps, C2PA where available</span></div>
+            </div>
+            <div class="bound-label">UNTRUSTED INPUT → CONTROLLED PROCESSING</div>
+            <div class="outbox"><span class="nlabel-sm">Normalized media + metadata + evidence ref</span></div>
+          </div>
+          <div class="arch-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
+          <div class="arch-zone arch-wide">
+            <span class="zone-label">03 | Parallel Signal Extraction</span>
+            <div class="branches">
+              <div class="branch">
+                <span class="branch-title">Audio forensics</span>
+                <div class="node-tiny"><span>Audio authenticity model</span></div>
+                <div class="node-tiny"><span>Quality &amp; manipulation indicators</span></div>
+                <span class="res">Audio evidence + confidence</span>
+              </div>
+              <div class="branch">
+                <span class="branch-title">Video forensics</span>
+                <div class="node-tiny"><span>Frame sampling &amp; aggregation</span></div>
+                <div class="node-tiny"><span>Video authenticity signals</span></div>
+                <span class="res">Video evidence + confidence</span>
+              </div>
+              <div class="branch">
+                <span class="branch-title">Language &amp; speech</span>
+                <div class="node-tiny"><span>Lang ID • STT • confidence</span></div>
+                <div class="node-tiny"><span>Structured pressure cues</span></div>
+                <span class="res">Language/context signals</span>
+              </div>
+              <div class="branch">
+                <span class="branch-title">Provenance &amp; payment context</span>
+                <div class="node-tiny"><span>C2PA / provenance</span></div>
+                <div class="node-tiny"><span>Beneficiary, timing, amount, policy</span></div>
+                <span class="res">Context + provenance evidence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-lower">
+          <div class="arch-zone">
+            <span class="zone-label">04 | Evidence Fusion &amp; Policy Engine</span>
+            <div class="engine">
+              <div class="eng-block"><span>Signal availability &amp; quality gate</span></div>
+              <div class="eng-block"><span>Evidence fusion (authenticity • context • provenance)</span></div>
+              <div class="eng-block"><span>Policy rules • explainable rationale</span></div>
+              <div class="eng-block eng-core"><span>Risk classification • Structured Risk Assessment</span></div>
+            </div>
+          </div>
+          <div class="arch-conn arch-conn-v" aria-hidden="true"><span class="line-v"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 0l5 10H0z"/></svg></div>
+          <div class="arch-zone">
+            <span class="zone-label">05 | Controlled Response</span>
+            <div class="outcomes">
+              <div class="outcome outcome--low"><span class="badge badge--low">Low</span><p>Normal maker-checker • log</p></div>
+              <div class="outcome outcome--elevated"><span class="badge badge--elevated">Elevated</span><p>Independent callback (trusted directory)</p></div>
+              <div class="outcome outcome--high"><span class="badge badge--high">High</span><p>Hold • human review • dual approval</p></div>
+            </div>
+            <p class="arch-note">Risk determines verification requirements — not a verdict of fraud.</p>
+          </div>
+          <div class="arch-conn arch-conn-v" aria-hidden="true"><span class="line-v"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 0l5 10H0z"/></svg></div>
+          <div class="arch-zone">
+            <span class="zone-label">06 | Human-led Financial Workflow</span>
+            <div class="wf-row">
+              <div class="node-sm"><span class="nlabel-sm">Authorized reviewer / analyst console</span><span class="nsub-sm">Inspect signals, rationale, evidence</span></div>
+              <div class="node-sm"><span class="nlabel-sm">Independent identity verification</span><span class="nsub-sm">Via trusted contact details only</span></div>
+              <div class="node-sm"><span class="nlabel-sm">Maker-checker • payment workflow</span><span class="nsub-sm">Institutional controls retained</span></div>
+            </div>
+            <div class="audit"><span class="label">Tamper-evident audit trail</span><span class="nsub-sm">Case IDs, hashes, timestamps, versions, decisions</span></div>
+          </div>
+        </div>
+        <div class="footline"><span><b>TRUVY</b> · Know what's real. · ARCHITECTURE</span><span>11 / 14</span></div>
+      </section><!-- ============ SLIDE 12 · ARCHITECTURE PIPELINE & DECISION LOGIC ============ -->
+      <section class="slide" id="slide-12" data-title="Multiple Signals. One Explainable Risk Assessment." data-section="ARCHITECTURE" aria-label="Architecture: pipeline and decision logic">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">ARCHITECTURE</span>
+            <h2 class="slide-title slide-title--sm">Multiple Signals. One <span class="accent">Explainable Risk Assessment.</span></h2>
+            <p class="anno">TRUVY separates media authenticity, contextual warning signs, and institutional policy before recommending an action.</p>
+          </div>
+          <div class="slide-head__meta">12 / 14<br />Pipeline &amp; decision logic</div>
+        </div>
+        <div class="arch-stage" style="margin-top:8px;">
+          <div class="arch-zone"><span class="zone-label">Inputs</span><div class="node-sm"><span class="nlabel-sm">Media + Context</span></div></div>
+          <div class="arch-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
+          <div class="arch-zone"><span class="zone-label">Normalization</span><div class="node-sm"><span class="nlabel-sm">Secure preprocessing</span><span class="nsub-sm">Decode • quality checks</span></div></div>
+          <div class="arch-conn" aria-hidden="true"><span class="line"></span><svg viewBox="0 0 10 10" fill="currentColor"><path d="M0 0l10 5-10 5z"/></svg></div>
+          <div class="arch-zone arch-wide"><span class="zone-label">Parallel signal extraction</span><div class="branches"><div class="branch"><span class="branch-title">Audio</span><div class="node-tiny"><span class="nsub-sm">Preprocessing • authenticity</span></div><span class="res">Audio + confidence</span></div><div class="branch"><span class="branch-title">Video</span><div class="node-tiny"><span class="nsub-sm">Frame sampling • aggregation</span></div><span class="res">Video + confidence</span></div><div class="branch"><span class="branch-title">Language &amp; speech</span><div class="node-tiny"><span class="nsub-sm">Lang ID • STT • pressure cues</span></div><span class="res">Structured cues</span></div><div class="branch"><span class="branch-title">Provenance &amp; payment</span><div class="node-tiny"><span class="nsub-sm">C2PA • beneficiary • timing • policy</span></div><span class="res">Context signals</span></div></div></div>
+        </div>
+        <div class="arch-table" style="margin-top:6px;">
+          <div class="arch-row head"><div>Risk Band</div><div>Interpretation</div><div>Recommended Action</div><div>Qualification</div></div>
+          <div class="arch-row"><div><span class="badge badge--low">Low</span></div><div><span class="nsub-sm">No escalation threshold met</span></div><div><span class="nsub-sm">Normal maker-checker • log</span></div><div><span class="nsub-sm">Does not guarantee genuine</span></div></div>
+          <div class="arch-row"><div><span class="badge badge--elevated">Elevated</span></div><div><span class="nsub-sm">Indicators justify verification</span></div><div><span class="nsub-sm">Independent callback (trusted directory)</span></div><div><span class="nsub-sm">Request for verification • not fraud</span></div></div>
+          <div class="arch-row"><div><span class="badge badge--high">High</span></div><div><span class="nsub-sm">Policy concern requiring escalation</span></div><div><span class="nsub-sm">Hold • human review • dual approval</span></div><div><span class="nsub-sm">Not automatic fraud finding</span></div></div>
+        </div>
+        <div class="arch-cols">
+          <div class="arch-zone"><span class="zone-label">Evidence package</span><div class="branches" style="grid-template-columns:repeat(3,1fr);"><div class="branch"><span class="branch-title">Signals</span><span class="nsub-sm">Scores, confidence, availability</span></div><div class="branch"><span class="branch-title">Context</span><span class="nsub-sm">Transcript, timing, beneficiary</span></div><div class="branch"><span class="branch-title">Audit</span><span class="nsub-sm">Hashes, versions, rationale</span></div></div></div>
+          <div class="arch-zone"><span class="zone-label">Independent verification loop</span><div class="wf-row"><div class="node-sm"><span class="nlabel-sm">Trusted directory lookup</span></div><div class="node-sm"><span class="nlabel-sm">Independent callback</span></div><div class="node-sm"><span class="nlabel-sm">Authorized human decision</span></div></div><p class="arch-note">Never use contact from suspicious message. Final decision remains institutional.</p></div>
+        </div>
+        <div class="footline"><span><b>TRUVY</b> · Know what's real. · ARCHITECTURE</span><span>12 / 14</span></div>
+      </section>      </section>
+
+      
+
+      <!-- ============ SLIDE 13 · ARCHITECTURE SEC      <!-- ============ SLIDE 13 · ARCHITECTURE SECURITY, PRIVACY, THREAT MITIGATION ============ -->
+      <section class="slide" id="slide-13" data-title="Trust Must Be Engineered, Not Assumed." data-section="ARCHITECTURE" aria-label="Architecture: security, privacy, threat mitigation">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+        <div class="slide-head">
+          <div>
+            <span class="eyebrow">ARCHITECTURE</span>
+            <h2 class="slide-title slide-title--sm">Trust Must Be <span class="accent">Engineered, Not Assumed.</span></h2>
+            <p class="anno">TRUVY limits data exposure, resists common tactics, and makes model limitations visible to reviewers.</p>
+          </div>
+          <div class="slide-head__meta">13 / 14<br />Security • Privacy • Validation</div>
+        </div>
+        <div class="arch-cols" style="margin-top:6px;">
+          <div class="arch-zone"><span class="zone-label">Security &amp; privacy layers</span><div class="wf-row"><div class="node-sm"><span class="nlabel-sm">Auth • RBAC • least privilege</span></div><div class="node-sm"><span class="nlabel-sm">Encryption in transit/at rest</span></div><div class="node-sm"><span class="nlabel-sm">Tamper-evident audit</span></div><div class="node-sm"><span class="nlabel-sm">Minimized retention</span></div><div class="node-sm"><span class="nlabel-sm">Versioned policies/models</span></div></div><p class="arch-note">No voiceprint database. Hashes, not full raw exports by default.</p></div>
+          <div class="arch-zone"><span class="zone-label">Validation (planned)</span><div class="wf-row"><div class="node-sm"><span class="nlabel-sm">English/Hindi/Tamil</span></div><div class="node-sm"><span class="nlabel-sm">Clean vs compressed</span></div><div class="node-sm"><span class="nlabel-sm">EER/FPR per condition</span></div><div class="node-sm"><span class="nlabel-sm">Latency/failure rates</span></div></div><span class="res">PLANNED VALIDATION — RESULTS PENDING</span></div>
+        </div>
+        <div class="arch-table" style="margin-top:4px;">
+          <div class="arch-row head"><div>Threat</div><div>Potential failure</div><div>Mitigation</div><div>Residual</div></div>
+          <div class="arch-row"><div><span class="nsub-sm">Synthetic media</span></div><div><span class="nsub-sm">Evasion / subtle edits</span></div><div><span class="nsub-sm">Multi-signal + independent verification + human review</span></div><div><span class="nsub-sm">Probabilistic; cannot guarantee detection</span></div></div>
+          <div class="arch-row"><div><span class="nsub-sm">Low-quality/compressed</span></div><div><span class="nsub-sm">Unreliable scores</span></div><div><span class="nsub-sm">Quality gate marks signals unavailable/low conf</span></div><div><span class="nsub-sm">May remain inconclusive</span></div></div>
+          <div class="arch-row"><div><span class="nsub-sm">Callback manipulation</span></div><div><span class="nsub-sm">Fake contact</span></div><div><span class="nsub-sm">Use trusted directory only</span></div><div><span class="nsub-sm">Depends on directory integrity</span></div></div>
+          <div class="arch-row"><div><span class="nsub-sm">False pos/neg</span></div><div><span class="nsub-sm">Business friction or missed fraud</span></div><div><span class="nsub-sm">Verification, hold, review, monitoring</span></div><div><span class="nsub-sm">Errors cannot be eliminated</span></div></div>
+        </div>
+        <div class="footline"><span><b>TRUVY</b> · Know what's real. · ARCHITECTURE</span><span>13 / 14</span></div>
+      </section>      <!-- ============ SLIDE 14 · THANK YOU ============ -->
+      <section class="slide" id="slide-14" data-title="Thank You" data-section="THANK YOU" aria-label="Thank you">
+        <div class="slide__grid-bg" aria-hidden="true"></div>
+        <div class="s-close" style="justify-content:center; text-align:center; align-items:center;">
+          <span class="eyebrow">Thank You</span>
+          <h1 class="wordmark s-cover__wordmark">TRU<span class="wm-v">V</span>Y</h1>
+          <p class="s-cover__tagline">Know what's real.</p>
+          <div class="s-cover__team" style="margin-top:32px; text-align:center;">
+            <span class="label">Team RED HAT</span>
+            <span class="names"><span>Waqar Akhtar</span><span>Ojus Mathur</span><span>Ujjwal Sharma</span></span>
+          </div>
+          <div class="footline" style="position:absolute; left:104px; right:104px; bottom:76px;"><span><b>TRUVY</b> · Know what's real.</span><span>14 / 14</span></div>
+        </div>
+      </section>
+      
 
   <div class="progress screen-only" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
 </div>
@@ -608,7 +771,7 @@
 <div class="modal-layer screen-only" id="pdfModal" hidden role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
   <div class="modal">
     <span class="modal__kicker">Export · PDF</span>
-    <h2 class="modal__title" id="pdfModalTitle">Save the deck as a 10-page PDF</h2>
+    <h2 class="modal__title" id="pdfModalTitle">Save the deck as a 14-page PDF</h2>
     <p class="modal__text">Your browser's print dialog will open. Choose <strong>Save as PDF</strong>. TRUVY has prepared a print stylesheet so each slide fills exactly one landscape page.</p>
     <ul class="modal__steps">
       <li><span class="k">01</span><span>Destination: <code>Save as PDF</code></span></li>
@@ -620,10 +783,21 @@
       <button class="tbtn tbtn--primary" id="btnConfirmPrint">Open print dialog</button>
       <button class="tbtn tbtn--ghost" id="btnCancelPrint">Cancel</button>
     </div>
-    <p class="modal__note">Filename suggested: <code>TRUVY-RAKSHAM-Round-1-Pitch-Deck.pdf</code>. Chrome and Edge preserve vector text and diagrams best.</p>
+    <p class="modal__note">Filename suggested: <code>TRUVY-RAKSHAM-Round-1-Submission.pdf</code>. Chrome and Edge preserve vector text and diagrams best.</p>
   </div>
 </div>
 
 <script src="js/deck.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
